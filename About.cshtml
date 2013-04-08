@@ -1,0 +1,137 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "About";
+}
+
+<hgroup class="title">
+    <h1>@Page.Title.</h1>
+    <h2>Your app description page.</h2>
+</hgroup>
+
+<article>
+    <h3>Overview:</h3>
+ 
+    <p>Your customers have asked for you to create a customized web portal application. This application require a new front-end being created which will tie into existing Facebook functionality, as well as create new functionality. You will additionally be tying your application into several other existing web services and APIs. Everything you do on your site should be reflected on these other servers, and vice-versa.</p>
+    <p>There is quite a bit of ambiguity in the statement of needs and requirements. This is intentional. This has been done to get you thinking outside the box, and to allow you to be creative. Doing the bare minimum on this statement of needs will make the customer adequately content, but will not make them overly ecstatic with your project.</p>
+ 
+ 
+    <h2>Functional Requirements</h2>
+    <h3>Main Page</h3>
+    <br />
+    <p>When the user initially logs in using their Facebook information, they will be taken to the main page. On this page, they will shown several items. Some of which include their friends news feeds from facebook, the current status (up or down price) of their top 5 owned stocks, and any calendar events that are taking place on the current day. The page will also contain other information as yet to be determined by your customer. Other “Facebook” features to be implemented include but are not limited to</p>
+    <ul>
+        <li>Add a friend</li>
+        <li>Add photos</li>
+        <li>Update status</li>
+        <li>Send a message through Facebook</li>
+        <li>...Others will likely be added by your customer.</li>
+    </ul> 
+    <br />  
+    <h3>Stock Report</h3>
+        <p>This page will display a comprehensive report of all stocks that a user wishes. Using this component, a user may sell and purchase stocks. When doing so, they may list the purchase price and quantity. A history of all transactions shall be stored and viewable to the user upon request. Actual stock prices and relevant charts may be retrieved from the necessary APIs. The user would also like to know the current amount made or lost from each currently held stock. They would also like to see the amount they have made or lost from each of the stocks they have sold. However, all other data will be stored locally in the MS-SQL database.</p>
+        <p>At any time, the user should be able download their purchase and sales history into a local file on their own machines. They may then hit a “delete” button in order to wipe all transaction history from the MS-SQL server. The user may then reload their entire stock history using this saved file. If the user attempts to load this history file to their account when their stock information has not been cleared, they will be provided a message informing them that they will be overwriting existing data. They will have the option of whether or not they wish to process. Along with this message, they will be given the date and time the backup file was created.</p>
+        <p>For each specific stock, users may post a thought regarding it. Much like in a message board. This is entered into a free form text field and should be viewable (if allowed) in the system. This information will be stored in the SQL database.</p>
+    <br />
+    <h3>Chat Feature</h3>
+        <p>Using an HTML 5 component which we will discuss, users should be allowed to chat with one another on the web. Users should be required to login. All of the chat history for each user will be logged and viewable on an individual web page.
+        <p>Cookies should be used to remember a person’s handle.</p>
+    <br />
+    <h3>Calendar</h3>
+        <p>After being logged in, each user will have their own calendar page. This calendar will closely resemble Google Calendar. For any selected date, events may be created. All information shall be stored in the MS-SQL database. If a an event on the calendar is occurring on the current day, this should be displayed on the user’s main page.</p>
+        <p>A second requirement is that the data for this calendar is that a specific event should be downloadable and shareable via an xml file to a user’s desktop. This means that a user could create a calendar event, download an xml file containing the event details and send this file to another user who could upload this event information to their application and have it appear in their calendar.</p>
+</article>
+
+<article>
+    <h2>Non-Functional Requirements</h2>
+    <h3>Security</h3>
+    <p>Your application is expected to pass various security requirements. Some of which are basic and include users not being able to access features of the application that they should not have access to. At various stages, your application will be evaluated by students in a simultaneous security course. Part of your grade will reflect how well you react to various recommendations by these students.</p>
+    <br />
+    <h3>Testing</h3>
+    <p>You are expected to perform proper testing on your application. This includes, but is not limited to:</p>
+    <ul>
+        <li>Unit testing.</li>
+        <li>Integration Testing.</li>
+        <li>System Testing.</li>
+        <li>Load Testing</li>
+        <li>Acceptance Testing</li>
+        <li>Usability Testing</li>
+    </ul>
+    <br />
+    <h3>Reporting</h3>
+    <p>You are expected to provide the customer information on what pages were visited and how long a user was on a page. You may use a tool such as Google Analytics or similar tool.</p>
+    <br />
+    <h3>Supported Devices</h3>
+    <p>The application is expected to function on numerous supported devices. They include various browsers, computers and mobile devices. Some of them are:</p>
+    <ul>
+        <li>Safari on OSX</li>
+        <li>IE on Windows</li>
+        <li>Chrome on Windows</li>
+        <li>Firefox on Windows</li>
+        <li>Various mobile devices (You will need to discuss the specific devices with your customer)</li>
+    </ul>
+    <br />
+    <h3>Development Environment</h3>
+    <ul>
+        <li>You are expected to maintain a proper development environment for your project. This includes maintaining a proper migration strategy for your web code and SQL environments.</li>
+        <li>You are expected to make full use of your development, staging and production environments.</li>
+        <ul>
+            <li>Follow the proper migration strategy.</li>
+            <li>This should be laid out in your requirements document under the non-functional requirements section.</li>
+        </ul>
+        <li>Use a version control system! I do not care which one you use.</li>
+        <ul>
+            <ul>
+                <li>SVN in the SE environment</li>
+                <li>BitBucket</li>
+                <li>GitHub</li>
+                <li>Google Code etc....</li>
+            </ul>
+            <li>Make sure to give me access. You can let me know of the relevant account information in a simple comment in the correlating dropbox.</li>
+            <li>I should be able to “kill” one of your VMs and not severely adversely affect your project. All of your information should be retrievable from your VCS.</li>
+        </ul>
+        <li>Bug tracking</li>
+        <ul>
+            <li>You will be expected to use a bug tracking tool, Trac. Make sure to provide me access. You may provide this information in a simple comment in the appropriate dropbox.</li>
+        </ul>
+    </ul>
+    <br />
+    <h3>Deliverables</h3>
+    <table>
+        <tr>
+            <td>2-1</td>
+            <td>Team Creation</td>
+        </tr>
+        <tr>
+            <td>3-1</td>
+            <td>VM/VCS & Bug Tracking tool setup</td>
+        </tr>
+        <tr>
+            <td>3-2</td>
+            <td>Project Requirements Document</td>
+        </tr>
+        <tr>
+            <td>4-2</td>
+            <td>Design Document</td>
+        </tr>
+        <tr>
+            <td>6-1</td>
+            <td>Release 1</td>
+        </tr>
+        <tr>
+            <td>7-1</td>
+            <td>Team Reflection</td>
+        </tr>
+        <tr>
+            <td>8-1</td>
+            <td>Beta Release (Application will be evaluated by security students)</td>
+        </tr>
+        <tr>
+            <td>10-1</td>
+            <td>Release 2</td>
+        </tr>
+        <tr>
+            <td>10-2</td>
+            <td>Post Mortem</td>
+        </tr>
+    </table>
+</article>
