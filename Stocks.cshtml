@@ -1,82 +1,70 @@
 ﻿@{
-    Layout = "~/_SiteLayout.cshtml";
-    Page.Title = "Stocks";
+    Layout = "~/_TileLayout.cshtml";
+    Page.Head = "Stocks";
 }
-<!DOCTYPE html>
-<html>
-	<head>
-	</head>
-	<body>
-		<!-- DOM Elements -->
-			<form class="inputs">
-				<input type="text"></input>
-				<button type="submit">Display</button>
-			</form>
-			
-		<!-- Imports -->
-		<script src="https://raw.github.com/ldc1108/stocks/master/bootstrap.min.js"></script>
-		<script src="https://raw.github.com/ldc1108/stocks/master/QuoteService.js"></script>
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+
+@section content {
+    <form class="inputs">
+	    <input type="text"></input>
+	    <button type="submit">Display</button>
+    </form>
 		
-		<!-- Scripts -->
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("button").button();
-				// When the form is submitted:
-				$("form").submit(function(e) {
-					e.preventDefault();
-					var tick = $("input").val();
-					new Markit.QuoteService(tick, function(jsonResult) {
-						this.clearResult();
-						//Catch errors
-						//$("p").text("About to if..");
-						if (!jsonResult.Data || jsonResult.Message){
-							this.renderAlert(jsonResult);
-							return;
-						}
-						this.success(jsonResult);
-					});					
-				});
-				// Auto Complete
-				$("input").focus().autocomplete({
-					source: function(request,response) {
-						$.ajax({
-							beforeSend: function(){ 
-								$("span.help-inline").show();
-								$("span.label-info").empty().hide();
-							},
-							url: "http://dev.markitondemand.com/api/Lookup/jsonp",
-							dataType: "jsonp",
-							data: {
-								input: request.term
-							},
-							success: function(data) {
-								response( $.map(data, function(item) {
-									return {
-										label: item.Name + " (" +item.Exchange+ ")",
-										value: item.Symbol
-									}
-								}));
-								$("span.help-inline").hide();
-							}
-						});
-				},
-				minLength: 0,
-				select: function( event, ui ) {
-					//console.log(ui.item);
-					$("span.label-info").html("You selected " + ui.item.label).fadeIn("fast");
-				},
-				open: function() {
-					$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-				},
-				close: function() {
-					$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-				}
-			})
-		;
+	<!-- Scripts -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("button").button();
+			// When the form is submitted:
+			$("form").submit(function(e) {
+				e.preventDefault();
+				var tick = $("input").val();
+				new Markit.QuoteService(tick, function(jsonResult) {
+					this.clearResult();
+					//Catch errors
+					//$("p").text("About to if..");
+					if (!jsonResult.Data || jsonResult.Message){
+						this.renderAlert(jsonResult);
+						return;
+					}
+					this.success(jsonResult);
+				});					
 			});
+			// Auto Complete
+			$("input").focus().autocomplete({
+				source: function(request,response) {
+					$.ajax({
+						beforeSend: function(){ 
+							$("span.help-inline").show();
+							$("span.label-info").empty().hide();
+						},
+						url: "http://dev.markitondemand.com/api/Lookup/jsonp",
+						dataType: "jsonp",
+						data: {
+							input: request.term
+						},
+						success: function(data) {
+							response( $.map(data, function(item) {
+								return {
+									label: item.Name + " (" +item.Exchange+ ")",
+									value: item.Symbol
+								}
+						}));
+						$("span.help-inline").hide();
+					}
+				});
+			},
+			minLength: 0,
+			select: function( event, ui ) {
+				//console.log(ui.item);
+				$("span.label-info").html("You selected " + ui.item.label).fadeIn("fast");
+			},
+			open: function() {
+				$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+			},
+			close: function() {
+				$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+			}
+		});
+	});
 			
 	// Prototype some methods onto our Quote Service
 	Markit.QuoteService.prototype.clearResult = function(){
@@ -151,5 +139,4 @@
 	};
 	
 	</script>
-	</body>
-</html>
+}

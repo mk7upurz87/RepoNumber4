@@ -3,43 +3,13 @@
     Page.Title = "Home Page";
 }
 
-@section featured {
-<section class="featured">
-    <div class="content-wrapper">
-        <hgroup class="title">
-            <h1>@Page.Title.</h1>
-            <h2>Facebook, Stocks, Calendar, Chat</h2>
-        </hgroup>
-        <p>
-            Web Portal Application - Release 1
-        </p>
-    </div>
-</section>
-}
-
-<h3>Requirements</h3>
-
-<ol class="round">
-    <li class="one">
-        <h5>Facebook</h5>
-        Working Functionality:
-    </li>
-
-    <li class="two">
-        <h5>Stocks</h5>
-        Working Functionality:
-    </li>
-
-    <li class="three">
-        <h5>Calendar</h5>
-        Working Functionality:
-    </li>
-    <li class="four">
-        <h5>Chat</h5>
-        Working Functionality:
-    </li>
-    <li class="five">
-        <h5>Home Page</h5>
-        Working Functionality:
-    </li>
-</ol>
+<hr />
+<div id="profileDiv" class="tile">@RenderPage("~/Profile.cshtml")</div>
+<hr />
+<div id="feedDiv tile" class="tile">@RenderPage("~/Feed.cshtml")</div>
+<hr />
+<div id="chatDiv" class="tile">@RenderPage("~/Chat.cshtml")</div>
+<hr />
+<div id="calendarDiv" class="tile">@RenderPage("~/Calendar.cshtml")</div>
+<hr />
+<div id="stocksDiv" class="tile">@RenderPage("~/Stocks.cshtml")</div>

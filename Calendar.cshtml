@@ -1,64 +1,37 @@
 ﻿@{
-    Layout = "~/_SiteLayout.cshtml";
-    Page.Title = "Calendar";
+    Layout = "~/_TileLayout.cshtml";
+    Page.Head = "Calendar";
 }
 
-<hgroup class="title">
-    <h1>@Page.Title.</h1>
-    <h2>My Calendar</h2>
-</hgroup>
+@section content {
+    <div id='calendar'></div>
 
+    <script>
+        $(document).ready(function () {
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
 
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay'
+                },
+                editable: true,
+                events: [
+                    {
+                        title: 'Shannons Birthday',
+                        start: new Date(y, m, 1)
+                    },
+                    {
+                        title: 'Project Due',
+                        start: new Date(y, 3, 9)
+                    }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <link href="~/Content/fullcalendar.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
-    <script src="~/Scripts/jquery-ui-1.10.2.custom.min.js"></script>
-    <script src="~/Scripts/fullcalendar.min.js"></script>
-<script>
-
-    $(document).ready(function () {
-
-        var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
-
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,basicWeek,basicDay'
-            },
-            editable: true,
-            events: [
-				{
-				    title: 'Shannons Birthday',
-				    start: new Date(y, m, 1)
-				},
-				{
-				    title: 'Project Due',
-				    start: new Date(y, 3, 9)
-				}
-
-            ]
+                ]
+            });
         });
-
-    });
-
-</script>
-<style>
-
-	#calendar {
-		width: 500px;
-		margin: 0 auto;
-		}
-
-</style>
-</head>
-<body>
-<div id='calendar'></div>
-</body>
-</html>
+    </script>
+}
