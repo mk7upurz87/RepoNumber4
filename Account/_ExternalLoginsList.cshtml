@@ -13,7 +13,10 @@
         <p>
             @foreach (var client in OAuthWebSecurity.RegisteredClientData) {
                 <button type="submit" name="provider" value="@client.AuthenticationClient.ProviderName"
-                        title="Log in using your @client.DisplayName account">@client.DisplayName</button>
+                        title="Log in using your @client.DisplayName account" onclick="location.href( https://www.facebook.com/dialog/oauth/?
+    client_id=123218671204386
+   
+    &scope=read_stream;">@client.DisplayName</button> 
             }
         </p>
     </fieldset>

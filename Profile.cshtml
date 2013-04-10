@@ -6,12 +6,6 @@
 @section content {
     <div id="fb-root"></div>
 
-    <div id="info">
-        <p id="content">
-            <script>content();</script>
-        </p>
-    </div>
-
     <script>
         // Additional JS functions here
         window.fbAsyncInit = function () {
@@ -47,24 +41,25 @@
             document.getElementById('fb-root').appendChild(e);
         }());
         function content() {
-            content = document.getElementById('content');
+            content = document.getElementById('conten');
             content.innerText = response.name;
+
         }
         function setStatus() {
             status1 = document.getElementById('status').value;
             FB.api(
-                {
-                    method: 'status.set',
-                    status: status1
-                },
-                function (response) {
-                    if (response == 0) {
-                        alert('Your facebook status not updated. Give Status Update Permission.');
-                    }
-                    else {
-                        alert('Your facebook status updated');
-                    }
-                }
+              {
+                  method: 'status.set',
+                  status: status1
+              },
+              function (response) {
+                  if (response == 0) {
+                      alert('Your facebook status not updated. Give Status Update Permission.');
+                  }
+                  else {
+                      alert('Your facebook status updated');
+                  }
+              }
             );
         }
 
@@ -78,4 +73,5 @@
             ref.parentNode.insertBefore(js, ref);
         }(document));
     </script>
+    <div id="info"><p id="conten"><script>content();</script></p></div>
 }
