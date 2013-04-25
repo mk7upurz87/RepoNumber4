@@ -94,9 +94,9 @@
         ref.parentNode.insertBefore(js, ref);
     }(document));
 </script>
- <div id="content" style="display:none;">
-    <input type="text" id="status"  name="status"/><a href="#" onClick="setStatus();  clear();window.location.reload();return false;"><input type="button" value="Post Status" onclick="clear();" /></a>
+ <div id="content" style="display:none;max-width:80%;float:left;">
+    <input type="text" id="status"  name="status"/><a href="#" onClick="setStatus();return false;"><input type="button" value="Post" onclick="window.location.reload(); clear(); " /></a>
   
-    <div id="social"></div></div>
+    <div id="social" style="max-width:80%;float:left;"></div></div>
 
 }
