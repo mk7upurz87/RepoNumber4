@@ -273,4 +273,4 @@
 		accessToken:			''
 	};
 
-})(jQuery);
+})($);

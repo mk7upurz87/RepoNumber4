@@ -126,6 +126,25 @@ footer {
     height: 100px;
 }
 
+div.tile {
+    max-width: 400px;
+    min-width: 200px;
+}
+
+.tile-minimize {
+
+    position: relative;
+    float: right;
+    top: -15px;
+    background: transparent;
+    border: dotted;
+    font-size: 1.25em;
+    height: 12px;
+    width: 12px;
+    padding-right: 5px;
+    padding-top: 5px;
+}
+}
 
 /* site title
 ----------------------------------------------------------*/

@@ -4,15 +4,164 @@
 }
 
 @section content {
-<form class="inputs">
-                        <input type="text"></input>
-                        <button type="submit">Display</button>
-                </form>
-                <ul id="data" style="list-style: none;">
-                        <li>
-                                <div id="table"></div>
-                                <div id="chartDemoContainer" style="width:100%; height:400px;"></div></li>
-                </ul>
 
-    <script src="/Scripts/quote.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://raw.github.com/ldc1108/stocks/master/bootstrap.min.js"></script>
+	<script src="https://raw.github.com/ldc1108/stocks/master/QuoteService.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+   
+    <form class="inputs">
+        <input class="stock-input" type="text" />
+        <button id="stock-submit" type="submit">Display</button>
+    </form>
+    <ul id="data" style="list-style: none;">
+        <li>
+            <div id="table"></div>
+            <div id="chartDemoContainer" style="width:100%; height:400px;"></div>
+        </li>
+    </ul>
+		
+	<!-- Scripts -->
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+		    $("button#stock-submit").button();
+
+		    // When the form is submitted:
+		    $("form.inputs").submit(function (e) {
+		        e.preventDefault();
+		        var tickerSymbol = $("input.stock-input").val();
+		        new Markit.QuoteService(tickerSymbol, function (jsonResult) {
+		            this.clearResult();
+
+		            //Catch errors
+		            //$("p").text("About to if..");
+		            if (!jsonResult.Data || jsonResult.Message) {
+		                this.renderAlert(jsonResult);
+		                return;
+		            }
+		            this.success(jsonResult);
+		        });
+		    });
+
+		    // Auto Complete
+		    $("input.stock-input").focus().autocomplete({
+		        source: function (request, response) {
+		            $.ajax({
+		                beforeSend: function () {
+		                    $("span.help-inline").show();
+		                    $("span.label-info").empty().hide();
+		                },
+		                url: "http://dev.markitondemand.com/api/Lookup/jsonp",
+		                dataType: "jsonp",
+		                data: {
+		                    input: request.term
+		                },
+		                success: function (data) {
+		                    response($.map(data, function (item) {
+		                        return {
+		                            label: item.Name + " (" + item.Exchange + ")",
+		                            value: item.Symbol
+		                        }
+		                    }));
+		                    $("span.help-inline").hide();
+		                }
+		            });
+		        },
+		        minLength: 0,
+		        select: function (event, ui) {
+
+		            //console.log(ui.item);
+		            $("span.label-info").html("You selected " + ui.item.label).fadeIn("fast");
+		        },
+		        open: function () {
+		            $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+		        },
+		        close: function () {
+		            $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+		        }
+		    });
+		});
+
+		// Prototype some methods onto our Quote Service
+		Markit.QuoteService.prototype.clearResult = function () {
+
+		    //$("p").text("clearResult");
+		    this.resetForm();
+		    $("#resultContainer").remove();
+		    $("div.alert").remove();
+		};
+
+		Markit.QuoteService.prototype.resetForm = function () {
+
+		    //$("p").text("resetForm");
+		    $("button").button("refresh");
+		    $("form").removeClass("error");
+		    $("input")
+                .val($("input").val().toUpperCase())
+                .select()
+                .focus();
+		};
+
+		Markit.QuoteService.prototype.success = function (jsonResult) {
+		    var $container = $("<div class='hide' id='resultContainer' />");
+		    $container.append("<h4>" + jsonResult.Data.Name + " (" + jsonResult.Data.Symbol + ")</h4>");
+		    $container.append(this.renderResultTable(jsonResult));
+
+		    $("form.inputs").after($container);
+		    $container.fadeIn('500');
+		    this.resetForm();
+		};
+
+		Markit.QuoteService.prototype.renderAlert = function (jsonResult) {
+		    var $form = $("form.inputs");
+		    $form.addClass("error");
+		    $form.before("<div class='alert alert-error'><a class='close' data-dismiss='alert'>&times;</a>" + jsonResult.Message + "</div>");
+		    var $divalert = $("div.alert");
+		    if($divalert) {
+		        $divalert.alert();
+		    }
+		};
+
+		Markit.QuoteService.prototype.renderResultTable = function (jsonResult) {
+		    var $table = $("<table />"),
+                $thead = $("<thead />"),
+                $tbody = $("<tbody />"),
+                tableHeadCells = [],
+		        tableCells = [];
+
+		    tableHeadCells.push("<tr>");
+		    tableHeadCells.push("<th>Last Price</th>");
+		    tableHeadCells.push("<th>Change</th>");
+		    tableHeadCells.push("<th>Change Percent</th>");
+		    tableHeadCells.push("<th>Change Percent YTD</th>");
+		    tableHeadCells.push("<th>Last Traded</th>");
+		    tableHeadCells.push("</tr>");
+
+		    tableCells.push("<tr>");
+		    tableCells.push("<td>$", jsonResult.Data.LastPrice, "</td>");
+		    tableCells.push("<td>", this.formatChgPct(jsonResult.Data.Change), "</td>");
+		    tableCells.push("<td>", this.formatChgPct(jsonResult.Data.ChangePercent), "%</td>");
+		    tableCells.push("<td>", jsonResult.Data.ChangePercentYTD.toFixed(2), "%</td>");
+		    tableCells.push("<td>", jsonResult.Data.Timestamp, "</td>");
+		    tableCells.push("</tr>");
+
+		    $table.addClass("table table-bordered table-striped");
+		    $thead.append(tableHeadCells.join(""));
+		    $tbody.append(tableCells.join(""));
+
+		    $table.append($thead).append($tbody);
+
+		    return $table;
+		};
+
+		Markit.QuoteService.prototype.formatChgPct = function (chg) {
+
+		    //the quote API returns negative numbers already,
+		    //so we just need to add the + sign to positive numbers
+		    return (chg <= 0) ? chg.toFixed(2) : "+" + chg.toFixed(2);
+		};
+
+    </script>
 }
