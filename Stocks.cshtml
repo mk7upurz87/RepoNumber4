@@ -4,29 +4,25 @@
 }
 
 @section content {
-
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="https://raw.github.com/ldc1108/stocks/master/bootstrap.min.js"></script>
-	<script src="https://raw.github.com/ldc1108/stocks/master/QuoteService.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script src="https://raw.github.com/ldc1108/stocks/master/QuoteService.js"></script>
+	<script src="Scripts/dataplot.js"></script>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-   
+
     <form class="inputs">
         <input class="stock-input" type="text" />
         <button id="stock-submit" type="submit">Display</button>
     </form>
-    <ul id="data" style="list-style: none;">
-        <li>
-            <div id="table"></div>
-            <div id="chartDemoContainer" style="width:100%; height:400px;"></div>
-        </li>
-    </ul>
+
+    <div id="container" style="width:150%; height:400px; background-color:#efeeef"></div>
 		
 	<!-- Scripts -->
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-		    $("button#stock-submit").button();
+		    $("button").button();
 
 		    // When the form is submitted:
 		    $("form.inputs").submit(function (e) {
@@ -42,6 +38,7 @@
 		                return;
 		            }
 		            this.success(jsonResult);
+		            new MarkitTime.TimeseriesService(tickerSymbol, 365);
 		        });
 		    });
 

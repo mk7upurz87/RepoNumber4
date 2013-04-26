@@ -18,7 +18,7 @@ MarkitTime.TimeseriesService.prototype.PlotChart = function(){
     //Make JSON request for timeseries data
     $.ajax({
         beforeSend:function(){
-            $("#chartDemoContainer").last().text("Loading chart...");
+            $("#container").last().text("Loading chart...");
         },
         data: { 
             symbol: this.symbol, 
@@ -71,7 +71,12 @@ MarkitTime.TimeseriesService.prototype.BuildDataAndChart = function(json){
 //Define the HighCharts options
 MarkitTime.TimeseriesService.prototype.oChartOptions = {
 	chart: {
-		renderTo: 'chartDemoContainer'
+	    renderTo: 'container',
+	    plotBackgroundColor: 'rgba(239, 238, 239, 1.0)',
+	    borderWidth: 2,
+	    plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+	    plotShadow: true,
+	    plotBorderWidth: 1
 	},
 	title:{},
 	subtitle: {
@@ -130,8 +135,3 @@ MarkitTime.TimeseriesService.prototype.oChartOptions = {
 	}]
 	//,credits:{ enabled:false },
 };
-
-/**
-* Need help? Visit the API documentation at:
-* http://dev.markitondemand.com
-*/
