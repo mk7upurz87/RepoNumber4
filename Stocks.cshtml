@@ -6,14 +6,8 @@
 
 }
 @section content {
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="https://raw.github.com/ldc1108/stocks/master/bootstrap.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-	<script src="https://raw.github.com/ldc1108/stocks/master/QuoteService.js"></script>
-	<script src="Scripts/dataplot.js"></script>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 
-    <form class="inputs">
+    <form class="inputs" id="stockForm">
         <input class="stock-input" type="text" />
         <button id="stock-submit" type="submit">Display</button>
     </form>
@@ -104,11 +98,11 @@
 		};
 
 		Markit.QuoteService.prototype.success = function (jsonResult) {
-		    var $container = $("<div class='hide' id='resultContainer' />");
+		    var $container = $("<div class='hide' id='resultContainer' style='width:150%' />");
 		    $container.append("<h4>" + jsonResult.Data.Name + " (" + jsonResult.Data.Symbol + ")</h4>");
 		    $container.append(this.renderResultTable(jsonResult));
 
-		    $("form.inputs").after($container);
+		    $("#stockForm").after($container);
 		    $container.fadeIn('500');
 		    this.resetForm();
 		};
@@ -146,7 +140,8 @@
 		    tableCells.push("<td>", jsonResult.Data.Timestamp, "</td>");
 		    tableCells.push("</tr>");
 
-		    $table.addClass("table table-bordered table-striped");
+		    $table.addClass("table");
+		    $table.attr('border', '1');
 		    $thead.append(tableHeadCells.join(""));
 		    $tbody.append(tableCells.join(""));
 
