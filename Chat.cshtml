@@ -1,8 +1,25 @@
 ﻿@{
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Chat";
+
+    var chat = Chat.getInstance();
+    
 }
 
 @section content {
-    <div>Insert Chat content here!!!</div>
+    @foreach (var message in chat.getMessages())
+    {
+        <div> @message </div>
+    }
+    <form class="inputs">
+                        <input type="text" id="message" />
+                        <button type="submit">Display</button>
+    </form>
+
+    <!-- Stop committing broken code. fixed. -->
+    <script type="text/javascript">
+        $("form.inputs").submit(function (e) {
+
+        });
+    </script>
 }

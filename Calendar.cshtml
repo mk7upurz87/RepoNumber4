@@ -7,7 +7,7 @@
     <div id='calendar'></div>
 
     <script>
-        $(document).ready(function () {
+        $(function () {
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
@@ -28,8 +28,11 @@
                     {
                         title: 'Project Due',
                         start: new Date(y, 3, 9)
+                    },
+                    {
+                        title: 'Project Restarted',
+                        start: new Date(y, 3, 8)
                     }
-
                 ]
             });
         });
