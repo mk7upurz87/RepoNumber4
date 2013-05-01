@@ -18,7 +18,7 @@
 var defaults = {
 
 	// display
-	defaultView: 'month',
+	defaultView: 'day',
 	aspectRatio: 1.35,
 	header: {
 		left: 'title',
