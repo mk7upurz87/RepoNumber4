@@ -1,10 +1,11 @@
 ﻿@{
     Layout = "~/_TileLayout.cshtml";
-    Page.Head = "Calender";
+    Page.Head = "Calendar";
+    Calendar cal = new Calendar();
 }
 
 @section content {
-    <div id='calendar-div'></div>
+    <div id='calendar'></div>
     <a href="~/Event.aspx"><button>Add New Event</button></a>
     <script>
         $(function () {
@@ -12,28 +13,28 @@
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
+            var name = "Shannon";
+            var e = new Array();
 
-            $('#calendar-div').fullCalendar({
+
+            for (var i = 0; i < 3; i++) {
+                e.push({ title: name, start: new Date(y, m, i) });
+            }
+
+
+            $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'month,basicWeek,basicDay'
                 },
                 editable: true,
-                events: [
-                    {
-                        title: 'Shannons Birthday',
-                        start: new Date(y, m, 1)
-                    },
-                    {
-                        title: 'Project Due',
-                        start: new Date(y, 3, 9)
-                    },
-                    {
-                        title: 'Project Restarted',
-                        start: new Date(y, 3, 8)
-                    }
-                ]
+                events: e
+            });
+
+            $('#calendar').find('.fc-header-right').css({
+                position: 'relative',
+                float: 'right'
             });
         });
 
