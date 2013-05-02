@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Calendar";
+    Calendar cal = new Calendar();
 }
 
 @section content {
@@ -12,13 +13,14 @@
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
-            var name = 'Shannons Birthday';
+            var name = "Shannon";
             var e = new Array();
-            Event eventList = new Event();
-            for (var i = 0; i < 5; i++) {
+
+
+            for (var i = 0; i < 3; i++) {
                 e.push({ title: name, start: new Date(y, m, i) });
             }
-            
+             
 
             $('#calendar').fullCalendar({
                 header: {

@@ -48,12 +48,14 @@ public partial class _Default : System.Web.UI.Page
         Response.Write(sqlSearch);
 
         mySql.Command.CommandText = sqlSearch;
-        GridView1.DataSource = mySql.Command.ExecuteReader();
-        GridView1.DataBind();
+        string hey = mySql.Command.ExecuteReader().ToString();
         mySql.Connection.Close();
+
+        Console.WriteLine(hey);
 
 
     }
+
 
 
 
