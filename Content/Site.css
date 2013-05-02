@@ -138,14 +138,14 @@ div.tile {
 }
 
     .tile-minimize {
-        position: relative;
-        float: right;
-        font-size: 2em;
-        top: 0px;
+        position: absolute;
+        font-size: 1em;
+        top: 5px;
+        right: 5px;
         background: transparent;
         border: outset;
-        height: 12px;
-        width: 12px;
+        height: 15px;
+        width: 15px;
         padding-right: 5px;
         padding-top: 5px;
     }
