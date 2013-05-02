@@ -17,86 +17,12 @@
     </script>
 
     <div id="fb-root"></div>
-    <script>
-    // Additional JS functions here
    
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '536466069729077', // App ID
-                channelUrl: '//http://people.rit.edu/~amb8805/Music/channel.html', // Channel File
-                status: true, // check login status
-                cookie: true, // enable cookies to allow the server to access the session
-                xfbml: true  // parse XFBML
-            });
-            FB.getLoginStatus(function (response) {
-                if (response.status === 'connected') {
-                    $('#social').fbWall({
-                        id: response.authResponse.userID,
-                        accessToken: response.authResponse.accessToken,
-                        showGuestEntries: true,
-                        showComments: true,
-                        max: 5,
-                        timeConversion: 12
-                    });
-                    document.getElementById('content').style.display = "inline";
-                    // connected
-                } else if (response.status === 'not_authorized') {
-                    // not_authorized
-               
-                   // $('#content').hide();
-                
-                } else {
-                   // $('#content').hide();
-             
 
-                    // not_logged_in
-                }
-            });
-            // Additional init code here
+    <div id="content" style="float:left;"><form>
+    <input type="text" style="width:74%;" id="status" placeholder="What's on your mind?" name="status"/>
+    <input type="button" class="btn btn-primary"  id="postbut" value="Post" onclick="window.location.reload();"/>
 
-        };
-    
-        (function() {
-            var e = document.createElement('script');
-            e.type = 'text/javascript';
-            e.src = document.location.protocol +
-                '//connect.facebook.net/en_US/all.js';
-            e.async = true;
-            document.getElementById('fb-root').appendChild(e);
-        }());
-    
-        function setStatus() {
-       
-            status1 = document.getElementById('status').value;
-            FB.api(
-            {
-                method: 'status.set',
-                status: status1
-            },
-            function (response) {
-                if (response == 0) {
-                    alert('Your facebook status not updated. Give Status Update Permission.');
-                }
-                else {
-                    window.location.reload();
-                    clear();
-                }
-            });
-        }
-
-
-        // Load the SDK Asynchronously
-        (function (d) {
-            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
-            ref.parentNode.insertBefore(js, ref);
-        }(document));
-    </script>
-
-    <div id="content" style="display:none;max-width:80%;float:left;">
-    <input type="text" id="status"  name="status"/><a href="#" onClick="setStatus();return false;"><input type="button" value="Post" onclick="window.location.reload(); clear(); " /></a>
-  
+                                          </form>
     <div id="social" style="max-width:80%;float:left;"></div></div>
 }
