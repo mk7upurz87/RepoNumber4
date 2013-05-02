@@ -1,10 +1,11 @@
 ﻿$(function () {
-    $("button").button();
+    $("#stock-submit").button();
 
     // When the form is submitted:
-    $("form.inputs").submit(function (e) {
+    $("#stockForm").submit(function (e) {
         e.preventDefault();
-        var tickerSymbol = $("input.stock-input").val();
+        var tickerSymbol = $("input#stock-input").val();
+
         new Markit.QuoteService(tickerSymbol, function (jsonResult) {
             this.clearResult();
 
@@ -70,10 +71,11 @@ Markit.QuoteService.prototype.clearResult = function () {
 Markit.QuoteService.prototype.resetForm = function () {
 
     //$("p").text("resetForm");
-    $("button").button("refresh");
-    $("form").removeClass("error");
-    $("input")
-        .val($("input").val().toUpperCase())
+    $("#stock-submit").button("refresh");
+    $("#stockForm").removeClass("error");
+    var $input = $("#stock-input");
+    $input
+        .val($input.val().toUpperCase())
         .select()
         .focus();
 };
