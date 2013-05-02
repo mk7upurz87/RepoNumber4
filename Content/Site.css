@@ -202,7 +202,8 @@ div.tile {
 }
 
 
-/* login
+/*----------------------------------------------------------
+    login
 ----------------------------------------------------------*/
 #login {
     display: block;
@@ -244,6 +245,10 @@ div.tile {
 	margin: 0 auto;
 }
 
+.fc-content {
+    position: relative;
+}
+
 .fc-header-title h2 {
     position: relative;
     top: -5px;
@@ -263,9 +268,21 @@ div.tile {
         background-color: #efeeef;
     }
 
+    .fb-wall-message {
+        max-width: 375px;
+    }
+
+    .fb-wall-comment-message {
+        max-width: 300px;
+    }
+
     div.fb-wall-likes {
         background-color: #efeeef;
     }
+
+#stocks-container {
+    background-color: #efeeef;
+}
 
 /*----------------------------------------------------------
     menu

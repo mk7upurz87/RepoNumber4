@@ -18,7 +18,7 @@
 var defaults = {
 
 	// display
-	defaultView: 'day',
+	defaultView: 'basicDay',
 	aspectRatio: 1.35,
 	header: {
 		left: 'title',
@@ -268,8 +268,7 @@ function Calendar(element, options, eventSources) {
 		if (options.theme) {
 			element.addClass('ui-widget');
 		}
-		content = $("<div class='fc-content' style='position:relative'/>")
-			.prependTo(element);
+		content = $("<div class='fc-content'>").prependTo(element);
 		header = new Header(t, options);
 		headerElement = header.render();
 		if (headerElement) {
