@@ -2,9 +2,7 @@
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Stocks";
 }
-@section imports {
 
-}
 @section content {
 
     <form class="inputs" id="stockForm">
@@ -12,7 +10,7 @@
         <button id="stock-submit" type="submit">Display</button>
     </form>
 
-    <div id="container" style="width:150%; height:400px; background-color:#efeeef"></div>
+    <div id="container" style="background-color:#efeeef"></div>
 		
 	<!-- Scripts -->
 
@@ -98,7 +96,7 @@
 		};
 
 		Markit.QuoteService.prototype.success = function (jsonResult) {
-		    var $container = $("<div class='hide' id='resultContainer' style='width:150%' />");
+		    var $container = $("<div class='hide' id='resultContainer' style='width:100%' />");
 		    $container.append("<h4>" + jsonResult.Data.Name + " (" + jsonResult.Data.Symbol + ")</h4>");
 		    $container.append(this.renderResultTable(jsonResult));
 

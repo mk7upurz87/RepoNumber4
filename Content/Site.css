@@ -100,19 +100,18 @@ h5, h6 {
 }
 
 #body {
-    background-color: #efeeef;
-    clear: both;
+    width: 1000px;
+    margin: auto;
     padding-bottom: 35px;
+    background-color: #efeeef;
+    border-radius: 25px;
+    clear: both;
 }
 
-    .main-content {
-        background: url("../Images/accent.png") no-repeat;
+    section.main-content {
+        border-radius: 10px;
         padding-left: 10px;
         padding-top: 30px;
-    }
-
-    .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
     }
 
 header .content-wrapper {
@@ -124,33 +123,66 @@ footer {
     background-color: #e2e2e2;
     font-size: .8em;
     height: 100px;
+    overflow-x: hidden;
 }
 
-#calendar {
-    max-width: 400px:;
-}
-
+/*-------------------------------------------------------------------
+     tile styling
+---------------------------------------------------------------------*/
 div.tile {
-    max-width: 400px;
-    min-width: 200px;
-}
-
-.tile-minimize {
-
     position: relative;
-    float: right;
-    top: -15px;
-    background: transparent;
-    border: dotted;
-    font-size: 1.25em;
-    height: 12px;
-    width: 12px;
-    padding-right: 5px;
-    padding-top: 5px;
-}
+    border: double;
+    border-color: #3B5998;
+    padding: 5px;
 }
 
-/* site title
+    .tile-minimize {
+        position: relative;
+        float: right;
+        top: 0px;
+        background: transparent;
+        border: outset;
+        height: 12px;
+        width: 12px;
+        padding-right: 5px;
+        padding-top: 5px;
+    }
+
+    div#profile {
+        height: 100px;
+    }
+
+    div.left-column {
+        position: relative;
+        float: left;
+        width: 480px;
+    }
+
+        div#feed {
+            height: 500px;
+            overflow-y: auto;
+        }
+
+        div#chat {
+            height: 300px;
+        }
+
+    div.right-column {
+        position: relative;
+        float: left;
+        width: 480px;
+    }
+
+        div#calender {
+            height: 400px;
+        }
+
+        div#stocks {
+            height: 400px;
+        }
+
+/*--------------------------------------------------------
+    site title
 ----------------------------------------------------------*/
 .site-title {
     color: #c8c8c8;
@@ -200,15 +232,32 @@ div.tile {
         list-style: none;
     }
 
-/* widgets
+/*----------------------------------------------------------
+    widgets
 ----------------------------------------------------------*/
 
-#calendar {
-	width: 500px;
+#calendar-div {
+	width: auto;
 	margin: 0 auto;
 }
 
-/* menu
+#social {
+    background-color: #efeeef;
+}
+    .fb-wall {
+        background-color: #efeeef;
+    }
+
+    .fb-wall-box {
+        background-color: #efeeef;
+    }
+
+    div.fb-wall-likes {
+        background-color: #efeeef;
+    }
+
+/*----------------------------------------------------------
+    menu
 ----------------------------------------------------------*/
 ul#menu {
     font-size: 1.3em;
@@ -236,31 +285,17 @@ ul#menu {
         }
 
 
-/* page elements
+/*----------------------------------------------------------
+    page elements
 ----------------------------------------------------------*/
 /* featured */
-.featured {
-    background-color: #fff;
+.featured hgroup.title h1, .featured hgroup.title h2 {
+    color: #fff;
 }
 
-    .featured .content-wrapper {
-        background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        color: #3e5667;
-        padding: 20px 40px 30px 40px;
-    }
-
-        .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #fff;
-        }
-
-        .featured p {
-            font-size: 1.1em;
-        }
+.featured p {
+    font-size: 1.1em;
+}
 
 /* page titles */
 hgroup.title {
@@ -556,7 +591,8 @@ input[type="checkbox"].input-validation-error {
 }
 
 
-/* tables
+/*----------------------------------------------------------
+    tables
 ----------------------------------------------------------*/
 table {
     border-collapse: collapse;
