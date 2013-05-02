@@ -14,6 +14,7 @@
         <link href="~/Content/fullcalendar.css" rel="stylesheet" />
         <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
         <!-- API's -->
 
@@ -30,6 +31,7 @@
         <script src ="Scripts/highcharts.js"></script>
         
         <script src="Scripts/fullcalendar.js"></script>
+    
         
         <meta name="viewport" content="width=device-width" />
     </head>
@@ -51,9 +53,10 @@
                             </text>
                         } else {
                             <ul>
-                                <li><a href="~/Account/Register">Register</a></li>
-                                <li><a href="https://www.facebook.com/dialog/oauth/?client_id=536466069729077&redirect_uri=http://localhost:8440/RepoNumber4/&scope=read_stream,user_status,friends_status,publish_stream">Log in</a></li>
-                            </ul>
+                                
+                                <li ><a class="btn btn-large  "  id="loginbutton" href="https://www.facebook.com/dialog/oauth/?client_id=536466069729077&redirect_uri=http://localhost:8440/RepoNumber4/&scope=read_stream,export_stream,photo_upload,user_likes,user_activities,user_status,friends_status,publish_stream">Log in</a></li>
+                                
+                           </ul>
                         }
                     </section>
                 </div>
@@ -76,5 +79,6 @@
     </body>
 
     <script src="Scripts/home.js"></script>
+    <script src="Scripts/facebook.js"></script>
 
 </html>
