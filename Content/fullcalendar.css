@@ -31,6 +31,10 @@ html .fc,
 /* Header
 ------------------------------------------------------------------------*/
 
+.fc-header {
+    max-width: inherit;
+}
+
 .fc-header td {
 	white-space: nowrap;
 	}
@@ -55,8 +59,11 @@ html .fc,
 	}
 	
 .fc-header-title h2 {
-	margin-top: 0;
-	white-space: nowrap;
+    position: relative;
+    top: -5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 24px;
 	}
 	
 .fc .fc-header-space {
@@ -101,6 +108,7 @@ html .fc,
 ------------------------------------------------------------------------*/
 	
 .fc-content {
+    position: relative;
 	clear: both;
 	}
 	

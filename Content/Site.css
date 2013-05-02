@@ -140,6 +140,7 @@ div.tile {
     .tile-minimize {
         position: relative;
         float: right;
+        font-size: 2em;
         top: 0px;
         background: transparent;
         border: outset;
@@ -245,35 +246,16 @@ div.tile {
 	margin: 0 auto;
 }
 
-.fc-content {
-    position: relative;
-}
-
-.fc-header-title h2 {
-    position: relative;
-    top: -5px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-size: 24px;
-}
-
 #social {
     background-color: #efeeef;
 }
     .fb-wall {
         background-color: #efeeef;
+        max-width: 425px;
     }
 
     .fb-wall-box {
         background-color: #efeeef;
-    }
-
-    .fb-wall-message {
-        max-width: 375px;
-    }
-
-    .fb-wall-comment-message {
-        max-width: 300px;
     }
 
     div.fb-wall-likes {

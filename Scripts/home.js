@@ -1,6 +1,6 @@
 ﻿$(function () {
     var $tile = $('div.tile');
-    $tile.append('<div>click my minimize button  --&gt<button class="tile-minimize"><b>_</b></button></div>');
+    $tile.append('<div><button class="tile-minimize"><p>-</p></button></div>');
     console.log($tile);
 
     var minimizedTiles = [];
