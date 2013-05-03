@@ -1,6 +1,6 @@
 ﻿$(function () {
     var $tile = $('div.tile');
-    $tile.append('<div class="btn-minimize tile-minimize">-</div>');
+    $tile.append('<div class="btn tile-minimize">-</div>');
 
     var modifiedTiles = {};
 

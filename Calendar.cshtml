@@ -12,6 +12,7 @@
         <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
    		<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet"/>
         <link href="~/Content/fullcalendar.css" rel="stylesheet" />
+        <link href="~/Content/fullcalendar.print.css" media="print" rel="stylesheet" />
         <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
         <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
  
@@ -23,10 +24,12 @@
         <script src="Scripts/fullcalendar.js" type="text/javascript"></script>
     </head>
     <body>
-        <div id='calendar'></div>
+        <div id="body">
+            <div id='calendar'></div>
 
-        <a href="~/Event.aspx" role="button">Add New Event</a>
-        <a href="~/Default.cshtml">Return to Portal</a>
+            <a class="btn" href="~/Event.aspx" role="button">Add New Event</a>
+            <a class="btn" href="~/Default.cshtml">Return to Portal</a>
+        </div>
 
         <script>
             $(function () {
