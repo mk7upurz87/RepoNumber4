@@ -4,15 +4,35 @@
 }
 
 @section content {
-	<script src="Scripts/dataplot.js"></script>
-    <script src="Scripts/QuoteService.js" type="text/javascript"></script>    
+<html>
+    <head>
+        <title>Web Engineering - @Page.Head</title>
+        
+        <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+   		<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet"/>
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
-    <form class="inputs" id="stockForm">
-        <input id="stock-input" type="text" />
-        <button id="stock-submit" type="submit">Display</button>
-    </form>
+        <script src="Scripts/jquery-1.9.1.min.js"></script>
+        <script src="Scripts/jquery-ui-1.10.2.custom.min.js" type="text/javascript"></script>
+        <script src="Scripts/jquery-ui-1.10.2.js"></script>
+  		<script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+        <script src="Scripts/dataPlot.js" type="text/javascript"></script>
+		<script src="Scripts/QuoteService.js" type="text/javascript"></script>
+        <script src="Scripts/highcharts.js"></script>
+        
+        <script src="Scripts/stocks.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+        <form class="inputs" id="stockForm">
+            <input id="stock-input" type="text" />
+            <button id="stock-submit" type="submit">Display</button>
+        </form>
 
-    <div id="stocks-container"></div>
+        <div id="stocks-container"></div>
 
-    <a href="~/Default.cshtml">Return to Portal</a>
+        <a href="~/Default.cshtml">Return to Portal</a>
+    </body>
+</html>
 }

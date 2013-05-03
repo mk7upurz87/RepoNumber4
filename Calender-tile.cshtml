@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/_TileLayout.cshtml";
+    Page.Head = "Calendar";
+    Calendar cal = new Calendar();
+}
+
+@section content {
+    <div id='calendar'></div>
+
+    <a href="~/Event.aspx" role="button">Add New Event</a>
+    <a href="~/Calendar.cshtml">View Calendar</a>
+
+    <script>
+        $(function () {
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            var name = "Shannon";
+            var e = new Array();
+
+            for (var i = 0; i < 3; i++) {
+                e.push({ title: name, start: new Date(y, m, i) });
+            }
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: ''
+                },
+                editable: true,
+                events: e
+            });
+        });
+    </script>
+}
