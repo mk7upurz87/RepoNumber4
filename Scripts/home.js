@@ -19,7 +19,7 @@
         modifiedTiles[$sibling.id] = $sibling.attr("height");
 
         $tile.animate({
-            height: '15px'
+            height: '20px'
         }).siblings('.tile').animate({
             height: '910px'
         })
