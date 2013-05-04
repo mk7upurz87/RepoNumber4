@@ -2,6 +2,7 @@
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Calendar";
     Calendar cal = new Calendar();
+        
 }
 
 @section content {
@@ -30,6 +31,7 @@
             <a class="btn" href="~/Event.aspx" role="button">Add New Event</a>
             <a class="btn" href="~/Default.cshtml">Return to Portal</a>
         </div>
+        
 
         <script>
             $(function () {
@@ -39,12 +41,14 @@
                 var y = date.getFullYear();
                 var name = "Shannon";
                 var e = new Array();
+                
 
 
                 for (var i = 0; i < 3; i++) {
-                    e.push({ title: name, start: new Date(y, m, i) });
+                    e.push({ title: "@cal.database()", start: new Date(y, m, i) });
                 }
 
+               // $('#calendar').changeView('month');
 
                 $('#calendar').fullCalendar({
                     header: {
