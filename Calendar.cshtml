@@ -2,6 +2,7 @@
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Calendar";
     Calendar cal = new Calendar();
+    cal.database();
         
 }
 
@@ -39,19 +40,13 @@
                 var d = date.getDate();
                 var m = date.getMonth();
                 var y = date.getFullYear();
-                var name = "Shannon";
                 var e = new Array();
                 
 
                 for (var i = 0; i < 3; i++) {
-                    e.push({ title: "@cal.database()", start: new Date(y, m, i) });
+                    e.push({ title: "@cal.getName()", start: new Date(y, m, i) });
                 }
 
-<<<<<<< HEAD
-               // $('#calendar').changeView('month');
-
-=======
->>>>>>> 4742bf268684ac40c2dd0004edb4d5b997e8024a
                 $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',

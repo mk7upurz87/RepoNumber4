@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 public class Calendar
 {
     List<string> events;
+    int i;
     
     SqlConnection myConnection = new SqlConnection("user id=webuser;" +
                                        "password=webuser;server=SHANNON-CHARLES;" +
@@ -19,9 +20,10 @@ public class Calendar
 	public Calendar()
 	{
         events = new List<string>();
+        i = -1;
 	}
 
-    public string database()
+    public void database()
     {
         try
         { myConnection.Open(); }
@@ -31,26 +33,25 @@ public class Calendar
         try
         {
             SqlDataReader myReader = null;
-            SqlCommand myCommand = new SqlCommand("select * from calendar",
+            SqlCommand myCommand = new SqlCommand("select * from Calendar",
                                                      myConnection);
             myReader = myCommand.ExecuteReader();
             while (myReader.Read())
             {
-
-                return myReader["name"].ToString();
+                events.Add(myReader["name"].ToString());
             }
         }
         catch (Exception e)
         {
             Console.WriteLine(e.ToString());
         }
-        return "whoops!";
     }
 
-    public List<string> getNames()
+    public string getName()
     {
-        System.Diagnostics.Debug.Write(events.ToString());
-        return events;
+        i = i + 1;
+        string name = events.ElementAt(i).ToString();
+        return name;
     }
 
 
