@@ -16,7 +16,7 @@
         var sock;
         function loadSocket() {
             if ("WebSocket" in window) {
-                sock = new WebSocket("ws://localhost:8181/chat");
+                sock = new WebSocket("ws://vm549-3.se.rit.edu:8181/chat");
                 sock.onopen = function (event) {
                     alert("connected");
                 }
