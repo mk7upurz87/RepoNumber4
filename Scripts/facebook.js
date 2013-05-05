@@ -117,7 +117,7 @@ function uploadphoto() {
 
 $('#postbut').click(function () {
     console.log("posting status");
-    setStatus();
+   uploadphoto();
    
 });
 $('#showpic').click(function () {
