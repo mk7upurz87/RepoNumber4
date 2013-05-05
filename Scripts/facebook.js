@@ -12,6 +12,9 @@ window.fbAsyncInit = function () {
 
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
+            userID = response.userID; source = 'http://graph.facebook.com/' + userID + '/picture';
+            document.getElementById(profile).src = source;
+            email = response.email;
             $('#social').fbWall({
                 id: response.authResponse.userID,
                 accessToken: response.authResponse.accessToken,
