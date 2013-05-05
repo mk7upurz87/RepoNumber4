@@ -1,36 +1,63 @@
 ﻿@{
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Calendar";
+    Calendar cal = new Calendar();
+    cal.database();
+        
 }
 
 @section content {
-    <div id='calendar'></div>
-    <a href="~/Event.aspx"><button>Add New Event</button></a>
-    <script>
-        $(function () {
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-            var name = 'Shannons Birthday';
-            var e = new Array();
-            Event eventList = new Event();
-            for (var i = 0; i < 5; i++) {
-                e.push({ title: name, start: new Date(y, m, i) });
-            }
-            
+<html>
+    <head>
+        <title>Web Engineering - @Page.Head</title>
 
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,basicWeek,basicDay'
-                },
-                editable: true,
-                events: e
+        <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+   		<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet"/>
+        <link href="~/Content/fullcalendar.css" rel="stylesheet" />
+        <link href="~/Content/fullcalendar.print.css" media="print" rel="stylesheet" />
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+ 
+        <script src="Scripts/jquery-1.9.1.min.js"></script>
+        <script src="Scripts/jquery-ui-1.10.2.custom.min.js" type="text/javascript"></script>
+        <script src="Scripts/jquery-ui-1.10.2.js"></script>
+  		<script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+
+        <script src="Scripts/fullcalendar.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="body">
+            <div id='calendar'></div>
+
+            <a class="btn" href="~/Event.aspx" role="button">Add New Event</a>
+            <a class="btn" href="~/Default.cshtml">Return to Portal</a>
+        </div>
+        
+
+        <script>
+            $(function () {
+                var date = new Date();
+                var d = date.getDate();
+                var m = date.getMonth();
+                var y = date.getFullYear();
+                var e = new Array();
+                
+
+                for (var i = 0; i < 3; i++) {
+                    e.push({ title: "@cal.getName()", start: new Date(y, m, i) });
+                }
+
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay'
+                    },
+                    editable: true,
+                    events: e
+                });
             });
-        });
-
-    </script>
-
+        </script>
+    </body>
+</html>
 }

@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/_TileLayout.cshtml";
+    Page.Head = "Stocks";
+}
+
+@section content {
+	<script src="Scripts/dataplot.js"></script>
+    <script src="Scripts/QuoteService.js" type="text/javascript"></script>    
+
+    <h3>Top 5 Stocks</h3>
+    <div id="stocks-top-five"></div>
+
+    <a class="btn" href="~/Stocks.cshtml">View Stocks</a>
+}

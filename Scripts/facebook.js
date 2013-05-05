@@ -1,62 +1,61 @@
 ﻿
 // Additional JS functions here
    
-       window.fbAsyncInit = function () {
-           FB.init({
-               appId: '536466069729077', // App ID
-               channelUrl: '//http://people.rit.edu/~amb8805/Music/channel.html', // Channel File
-               status: true, // check login status
-               cookie: true, // enable cookies to allow the server to access the session
-               xfbml: true  // parse XFBML
-           });
-           FB.getLoginStatus(function (response) {
-               if (response.status === 'connected') {
-                   $('#social').fbWall({
-                       id: response.authResponse.userID,
-                       accessToken: response.authResponse.accessToken,
-                       showGuestEntries: true,
-                       showComments: true,
-                       max: 5,
-                       timeConversion: 12
+window.fbAsyncInit = function () {
+    FB.init({
+        appId: '536466069729077', // App ID
+        channelUrl: '//http://people.rit.edu/~amb8805/Music/channel.html', // Channel File
+        status: true, // check login status
+        cookie: true, // enable cookies to allow the server to access the session
+        xfbml: true  // parse XFBML
+    });
+
+    FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {
+            $('#social').fbWall({
+                id: response.authResponse.userID,
+                accessToken: response.authResponse.accessToken,
+                showGuestEntries: true,
+                showComments: true,
+                max: 5,
+                timeConversion: 12
                    
-                   });
-                   $('a#loginbutton').text('Log out');
-                   $(function () {
-                       $('a#loginbutton').click(function () {
-                           if ($(this).text() == ("Log out")) {
+            });
+            $('a#loginbutton').text('Log out');
+            $(function () {
+                $('a#loginbutton').click(function () {
+                    if ($(this).text() == ("Log out")) {
                                
-                               FB.logout();
-                           }
-                           else {
+                        FB.logout();
+                    }
+                    else {
                               
-                           }
-                           console.log($(this).text());
-                       });
+                    }
+                    console.log($(this).text());
+                });
             
 
-                   });
+            });
                   
                
-                   $('a#register').hide();
-                   document.getElementById('content').style.display = "inline";
-                   // connected
-               } else if (response.status === 'not_authorized') {
-                   // not_authorized
+            $('a#register').hide();
+            document.getElementById('content').style.display = "inline";
+            // connected
+        } else if (response.status === 'not_authorized') {
+            // not_authorized
                
-                   // $('#social).hide();
+            // $('#social).hide();
                 
-               } else {
-                   console.log("i got here");
-                   $('#social').hide();
-                   $('form').hide();
+        } else {
+            console.log("i got here");
+            $('#social').hide();
+            $('form').hide();
              
-
-                   // not_logged_in
-               }
-           });
-           // Additional init code here
-
-       };
+            // not_logged_in
+        }
+    });
+    // Additional init code here
+};
     
 (function() {
     var e = document.createElement('script');

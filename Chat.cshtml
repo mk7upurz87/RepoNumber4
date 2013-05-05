@@ -1,25 +1,46 @@
 ﻿@{
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Chat";
-
     var chat = Chat.getInstance();
-    
 }
 
 @section content {
-    @foreach (var message in chat.getMessages())
-    {
-        <div> @message </div>
-    }
+    <textarea id="chats" ></textarea>
     <form class="inputs">
-                        <input type="text" id="message" />
-                        <button type="submit">Display</button>
+        <input type="text" id="message" />
+        <button type="submit" onclick="sendMessage">Display</button>
     </form>
 
     <!-- Stop committing broken code. fixed. -->
     <script type="text/javascript">
-        $("form.inputs").submit(function (e) {
+        var sock;
+        function loadSocket() {
+            if ("WebSocket" in window) {
+                sock = new WebSocket("ws://localhost:8181/chat");
+                sock.onopen = function (event) {
+                    alert("connected");
+                }
 
-        });
+                sock.onmessage = function (event) {
+                    var $chats = $('#messages');
+                    $chats.val($chats.val() + event.data + "\n");
+                }
+
+                sock.onclose = function (event) {
+                    alert("socket closed");
+                }
+            }
+            else {
+                alert("Chat is not supported in your browser. Get a better browser.")
+            }
+        }
+        function sendMessage() {
+            var message = $('#username').val() + ":" + $('#message').val();
+            sock.send(message);
+            $('#message').val('');
+        }
     </script>
+    <div> 
+        <a href="javascript:loadSocket()">connect socket</a>
+    </div>
 }

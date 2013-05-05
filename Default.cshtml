@@ -3,12 +3,22 @@
     Page.Title = "Home Page";
 }
 
-
-<hr />
-<div id="feedDiv tile" class="tile">@RenderPage("~/Feed.cshtml")</div> 
-<hr />
-<div id="chatDiv" class="tile">@RenderPage("~/Chat.cshtml")</div>
-<hr />
-<div id="calendarDiv" class="tile">@RenderPage("~/Calendar.cshtml")</div>
-<hr />
-<div id="stocksDiv" class="tile">@RenderPage("~/Stocks.cshtml")</div>
+<div id="profile" class="tile">
+    @RenderPage("~/Profile.cshtml")
+</div>
+<div class="left-column">
+    <div id="feed" class="tile">
+        @RenderPage("~/Feed.cshtml")
+    </div>
+    <div id="chat" class="tile">
+        @RenderPage("~/Chat.cshtml")
+    </div>
+</div>
+<div class="right-column">
+    <div id="calender" class="tile">
+        @RenderPage("~/Calender-tile.cshtml")
+    </div>
+    <div id="stocks" class="tile">
+        @RenderPage("~/Stocks-tile.cshtml")
+    </div>
+</div>
