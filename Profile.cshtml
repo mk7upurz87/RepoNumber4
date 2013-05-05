@@ -19,8 +19,6 @@
             FB.getLoginStatus(function (response) {
                 if (response.status === 'connected') {
 
-
-                    // connected
                 } else if (response.status === 'not_authorized') {
                     // not_authorized
                 } else {
@@ -72,5 +70,5 @@
             ref.parentNode.insertBefore(js, ref);
         }(document));
     </script>
-    <div id="info"><p id="conten"><script>content();</script></p></div>
+    <div id="profile-div"><p id="conten"><script>content();</script></p></div>
 }
