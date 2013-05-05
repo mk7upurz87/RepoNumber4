@@ -36,16 +36,18 @@
 
         <script>
             $(function () {
-                var date = new Date();
-                var d = date.getDate();
-                var m = date.getMonth();
-                var y = date.getFullYear();
                 var e = new Array();
-                
+                var i = 0;
 
-                for (var i = 0; i < 3; i++) {
-                    e.push({ title: "@cal.getName()", start: new Date(y, m, i) });
+                while( i < 3 ) {
+                    var date = "@cal.getDate()";
+                    var d = parseInt(date.slice(0, 1));
+                    var m = parseInt(date.slice(3, 4));
+                    var y = parseInt(date.slice(6, 9));
+                    e.push({ title: "@cal.getName()", start: new Date(y, m, d) });
+                    i = i + 1;
                 }
+
 
                 $('#calendar').fullCalendar({
                     header: {
