@@ -6,12 +6,14 @@ using System.Web;
 using System.Data.SqlClient;
 
 /// <summary>
-/// Summary description for Calendar
+/// Calendar connects with the sql! we need to figure out how to make it user specific
 /// </summary>
 public class Calendar
 {
-    List<string> events;
+    List<string> names;
+    List<string> days;
     int i;
+    int j;
     
     SqlConnection myConnection = new SqlConnection("user id=webuser;" +
                                        "password=webuser;server=SHANNON-CHARLES;" +
@@ -20,8 +22,10 @@ public class Calendar
                                        "connection timeout=30");
 	public Calendar()
 	{
-        events = new List<string>();
+        names = new List<string>();
+        days = new List<string>();
         i = -1;
+        j = -1;
 	}
 
     public void database()
@@ -39,7 +43,9 @@ public class Calendar
             myReader = myCommand.ExecuteReader();
             while (myReader.Read())
             {
-                events.Add(myReader["name"].ToString());
+                names.Add(myReader["name"].ToString());
+                days.Add(myReader["date"].ToString());
+                System.Diagnostics.Debug.Write("###################$");
             }
         }
         catch (Exception e)
@@ -51,7 +57,17 @@ public class Calendar
     public string getName()
     {
         i = i + 1;
-        string name = events.ElementAt(i).ToString();
+        string name = names.ElementAt(i).ToString();
         return name;
+    }
+
+    public string getDate()
+    {
+        j = j + 1;
+        string day = days.ElementAt(j).ToString();
+        System.Diagnostics.Debug.Write("****************************************");
+        System.Diagnostics.Debug.Write(day);
+        System.Diagnostics.Debug.Write("****************************************");
+        return day;
     }
 }
