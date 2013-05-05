@@ -2,6 +2,8 @@
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Calendar";
     Calendar cal = new Calendar();
+    cal.database();
+        
 }
 
 @section content {
@@ -30,6 +32,7 @@
             <a class="btn" href="~/Event.aspx" role="button">Add New Event</a>
             <a class="btn" href="~/Default.cshtml">Return to Portal</a>
         </div>
+        
 
         <script>
             $(function () {
@@ -37,12 +40,12 @@
                 var d = date.getDate();
                 var m = date.getMonth();
                 var y = date.getFullYear();
-                var name = "Shannon";
                 var e = new Array();
+                
 
 
                 for (var i = 0; i < 3; i++) {
-                    e.push({ title: name, start: new Date(y, m, i) });
+                    e.push({ title: "@cal.getName()", start: new Date(y, m, i) });
                 }
 
 

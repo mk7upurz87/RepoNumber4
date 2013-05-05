@@ -85,6 +85,26 @@ function setStatus() {
     });
 }
 
+function uploadphoto() {
+    var imgsrc = document.getElementById("uploadImage").src;
+    var wallPost = {
+        message: $('#status').val(),
+        
+        picture: imgsrc,
+    }; console.log(imgsrc);
+    FB.api('/me/feed', 'post', wallPost, function (response) {
+        if (!response || response.error) {
+            alert('Error occured');
+        } else {
+            alert('Post ID: ' + response);
+        }
+    });
+    var imgURL = $('#uploadImage').attr('src');
+
+             
+}
+
+
 
 // Load the SDK Asynchronously
 (function (d) {
@@ -97,6 +117,9 @@ function setStatus() {
 
 $('#postbut').click(function () {
     console.log("posting status");
-    setStatus();
+   uploadphoto();
    
+});
+$('#showpic').click(function () {
+   uploadphoto();
 });

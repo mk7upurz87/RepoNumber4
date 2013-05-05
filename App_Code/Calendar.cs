@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Web;
+using System.Data.SqlClient;
 
 /// <summary>
 /// Summary description for Calendar
@@ -10,17 +11,47 @@ using System.Web;
 public class Calendar
 {
     List<string> events;
+    int i;
+    
+    SqlConnection myConnection = new SqlConnection("user id=webuser;" +
+                                       "password=webuser;server=SHANNON-CHARLES;" +
+                                       "Trusted_Connection=True;" +
+                                       "database=WebEngineering; " +
+                                       "connection timeout=30");
 	public Calendar()
 	{
         events = new List<string>();
-        string hey = "hey";
-        events.Add(hey + "1");
-        events.Add(hey + "2");
-        events.Add(hey + "3");
+        i = -1;
 	}
 
-    public string getNames(int i)
+    public void database()
     {
-        return events.GetRange(i-1,i).ToString();
+        try
+        { myConnection.Open(); }
+        catch (Exception e)
+        { Console.WriteLine(e.ToString()); }
+
+        try
+        {
+            SqlDataReader myReader = null;
+            SqlCommand myCommand = new SqlCommand("select * from Calendar",
+                                                     myConnection);
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                events.Add(myReader["name"].ToString());
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+    }
+
+    public string getName()
+    {
+        i = i + 1;
+        string name = events.ElementAt(i).ToString();
+        return name;
     }
 }
