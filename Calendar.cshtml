@@ -43,6 +43,7 @@
                     var date = "@cal.getDate()";
                     var d = parseInt(date.slice(0, 1));
                     var m = parseInt(date.slice(3, 4));
+                    m = m - 1;
                     var y = parseInt(date.slice(6, 9));
                     e.push({ title: "@cal.getName()", start: new Date(y, m, d) });
                     i = i + 1;
