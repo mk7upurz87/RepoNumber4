@@ -2,21 +2,23 @@
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Chat";
     var chat = Chat.getInstance();
+    
 }
 
 @section content {
-    <textarea id="chats" ></textarea>
+    <textarea id="messages" ></textarea>
     <form class="inputs">
         <input type="text" id="message" />
-        <button type="submit" class="btn" onclick="sendMessage">Display</button>
+        <button type="submit" onclick="sendMessage">Display</button>
     </form>
 
     <!-- Stop committing broken code. fixed. -->
     <script type="text/javascript">
         var sock;
         function loadSocket() {
-            if ("WebSocket" in window) {
-                sock = new WebSocket("ws://vm549-3.se.rit.edu:8181/chat");
+
+ 	if ("WebSocket" in window) {
+                sock = new WebSocket("ws://localhost:8787/chat");
                 sock.onopen = function (event) {
                     alert("connected");
                 }
@@ -33,14 +35,16 @@
             else {
                 alert("Chat is not supported in your browser. Get a better browser.")
             }
+
         }
-        function sendMessage() {
-            var message = $('#username').val() + ":" + $('#message').val();
-            sock.send(message);
+        $.sendMessage=function() {  
+
+            var $textarea = $('#messages');
+            $textarea.val(name + ":" + $textarea.val() + $('#message').val() + "\n");
             $('#message').val('');
         }
     </script>
     <div> 
-        <a href="javascript:loadSocket()">connect socket</a>
+        <a href="javascript:sendMessage()">connect socket</a>
     </div>
 }
