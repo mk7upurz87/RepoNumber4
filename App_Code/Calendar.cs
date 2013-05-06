@@ -14,6 +14,7 @@ public class Calendar
     List<string> days;
     int i;
     int j;
+    string email;
     
     SqlConnection myConnection = new SqlConnection("user id=webuser;" +
                                        "password=webuser;server=SHANNON-CHARLES;" +

@@ -9,18 +9,16 @@
 
     <a class="btn" href="~/Event.aspx">Add New Event</a>
     <a class="btn" href="~/Calendar.cshtml">View Calendar</a>
-
     <script>
-        $(function () {
+        $.loadCalendar = function() {
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
             var name = "Shannon";
             var e = new Array();
-
             for (var i = 0; i < 3; i++) {
-                e.push({ title: name, start: new Date(y, m, i) });
+                e.push({ title: email, start: new Date(y, m, i) });
             }
 
             $('#calendar').fullCalendar({
@@ -32,6 +30,6 @@
                 editable: true,
                 events: e
             });
-        });
+        }
     </script>
 }
