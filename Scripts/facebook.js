@@ -15,10 +15,10 @@ window.fbAsyncInit = function () {
 
          
             FB.api('/me', function (response) {
-                email = response.email;
-               $.loadCalendar();
-
+                $.loadCalendar(response);
+                setProfileImage(response);
             });
+
             $('#social').fbWall({
                 id: response.authResponse.userID,
                 accessToken: response.authResponse.accessToken,
@@ -119,11 +119,16 @@ function uploadphoto() {
     ref.parentNode.insertBefore(js, ref);
 }(document));
 
-$('#postbut').click(function () {
+$('#postbut').click(function() {
     console.log("posting status");
    uploadphoto();
    
 });
-$('#showpic').click(function () {
+
+$('#showpic').click(function() {
    uploadphoto();
 });
+
+function setProfileImage(user) {
+    $('#profile-img').src("www.facebook.com/" + user.id + "/picture?type=circle");
+}
