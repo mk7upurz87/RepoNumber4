@@ -38,7 +38,7 @@ window.fbAsyncInit = function () {
 
             })
             $('a#register').hide();
-            document.getElementById('content').style.display = "inline";
+            document.getElementById('feed-content').style.display = "inline";
             // connected
         } else if (response.status === 'not_authorized') {
             // not_authorized
