@@ -8,67 +8,13 @@
     
 
 
-<<<<<<< HEAD
    
     <div><img id="profile" src=null; /></div>
-    <div id="info"><p id="content"></p></div>
-=======
-                } else if (response.status === 'not_authorized') {
-                    // not_authorized
-                } else {
-
-                    // not_logged_in
-                }
-            });
-            // Additional init code here
-
-        };
-
-        (function () {
-            var e = document.createElement('script');
-            e.type = 'text/javascript';
-            e.src = document.location.protocol +
-                '//connect.facebook.net/en_US/all.js';
-            e.async = true;
-            document.getElementById('fb-root').appendChild(e);
-        }());
-        function content() {
-            content = document.getElementById('conten');
-            content.innerText = response.name;
-        }
-        function setStatus() {
-            status1 = document.getElementById('status').value;
-            FB.api(
-              {
-                  method: 'status.set',
-                  status: status1
-              },
-              function (response) {
-                  if (response == 0) {
-                      alert('Your facebook status not updated. Give Status Update Permission.');
-                  }
-                  else {
-                      alert('Your facebook status updated');
-                  }
-              }
-            );
-        }
-
-
-        // Load the SDK Asynchronously
-        (function (d) {
-            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
-            ref.parentNode.insertBefore(js, ref);
-        }(document));
-    </script>
-
+    
     <div id="profile-div">
-        <p id="conten">
-            <script>content();</script>
+        <p id="content">
+            
         </p>
     </div>
->>>>>>> 8b8b8aa945f62ba7bd28160bbf70b3b3bf73bb30
+
 }
