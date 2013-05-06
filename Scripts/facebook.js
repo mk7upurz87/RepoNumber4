@@ -12,10 +12,12 @@ window.fbAsyncInit = function () {
 
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
+
          
             FB.api('/me', function (response) {
                 email = response.email;
                $.loadCalendar();
+
             });
             $('#social').fbWall({
                 id: response.authResponse.userID,
@@ -42,7 +44,7 @@ window.fbAsyncInit = function () {
 
             })
             $('a#register').hide();
-            document.getElementById('content').style.display = "inline";
+            document.getElementById('feed-content').style.display = "inline";
             // connected
         } else if (response.status === 'not_authorized') {
             // not_authorized
