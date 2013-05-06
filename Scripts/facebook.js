@@ -1,6 +1,6 @@
 ﻿
 // Additional JS functions here
-   
+var email = "";
 window.fbAsyncInit = function () {
     FB.init({
         appId: '536466069729077', // App ID
@@ -12,7 +12,10 @@ window.fbAsyncInit = function () {
 
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
-           
+            FB.api('/me', function (response) {
+                var email = response.email;
+                return email;
+            });
             $('#social').fbWall({
                 id: response.authResponse.userID,
                 accessToken: response.authResponse.accessToken,
