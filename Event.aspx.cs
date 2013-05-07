@@ -26,7 +26,6 @@ public partial class _Default : System.Web.UI.Page
         String sqlInsert = "insert into Calendar (name, starttime, endtime, date, description, [user]) values ('" + 
             name.Text + "','" + starttime.Text + "','" + endtime.Text + "','" + date.Text + "','" + description.Text +
             "','" + id + "');";
-        Response.Write(sqlInsert);
 
         mySql.Command.CommandText = sqlInsert;
         mySql.Command.ExecuteNonQuery();
