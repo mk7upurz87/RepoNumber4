@@ -211,8 +211,8 @@ div.tile {
     }
 
     #profile-content img{
-        position: relative;
-        max-height: 150px;
+        float: left;
+        
         max-width: 150px;
     }
 
