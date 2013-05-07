@@ -15,9 +15,9 @@
             Event Name:  <asp:TextBox ID="name" runat="server"></asp:TextBox>
             &nbsp; DO NOT USE QUOTES OF ANY KIND<br />
             Start Time:  <asp:TextBox ID="starttime" runat="server"></asp:TextBox>
-            &nbsp; (Must be formatted HH:MM)<br />
+            &nbsp; (Must be formatted HH:MM in military time)<br />
             End Time:  <asp:TextBox ID="endtime" runat="server"></asp:TextBox>
-            &nbsp; (Must be formatted HH:MM)<br />
+            &nbsp; (Must be formatted HH:MM in military time)<br />
             Date:  <asp:TextBox ID="date" runat="server"></asp:TextBox>
             &nbsp;(Must be formatted MM/DD/YYYY)<br />
             Description:  <asp:TextBox ID="description" runat="server"></asp:TextBox>
