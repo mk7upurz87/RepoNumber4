@@ -7,6 +7,8 @@
 <body>
     <p class="site-title"><a href="About.cshtml">Web Engineering</a></p>
 
+
+
     <h1>Add an Event</h1>
     <form id="form1" runat="server">
         <div>    
