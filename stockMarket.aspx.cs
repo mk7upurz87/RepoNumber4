@@ -75,11 +75,11 @@ public partial class _Default : System.Web.UI.Page
         // load current portfolio id
         int idport = load_current_idportfolio();
         // if no current, then make a new portfolio and get THAT id
-        if (idport == null)
-        {
-            make_new_portfolio();
-            idport = load_current_idportfolio();
-        }
+        //if (idport == null)
+        //{
+        //    make_new_portfolio();
+        //    idport = load_current_idportfolio();
+        //}
 
         // Up the shares for this portfolio, for this symbol!!!
         upshares(symbol, idport);
@@ -88,13 +88,13 @@ public partial class _Default : System.Web.UI.Page
         MySqlConnection mySql = new MySqlConnection();
         mySql.CreateConn();
         mySql.Command = mySql.Connection.CreateCommand();
-        String sqlInsert = "insert into ... (name, starttime, endtime, date, description) values ('" + name.Text + "','" + starttime.Text + "','" + endtime.Text + "','" + date.Text + "','" + description.Text + "');";
-        Response.Write(sqlInsert);
+        //String sqlInsert = "insert into ... (name, starttime, endtime, date, description) values ('" + name.Text + "','" + starttime.Text + "','" + endtime.Text + "','" + date.Text + "','" + description.Text + "');";
+        //Response.Write(sqlInsert);
 
-        mySql.Command.CommandText = sqlInsert;
-        mySql.Command.ExecuteNonQuery();
-        mySql.Command.Dispose();
-        mySql.Connection.Close();
-        mySql.CloseConn();
+        //mySql.Command.CommandText = sqlInsert;
+        //mySql.Command.ExecuteNonQuery();
+        //mySql.Command.Dispose();
+        //mySql.Connection.Close();
+        //mySql.CloseConn();
     }
 }
