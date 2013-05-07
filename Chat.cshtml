@@ -6,39 +6,39 @@
 }
 
 @section content {
-    <textarea id="messages" runat="server" rows=10 readonly></textarea>
 
-    <form class="inputs" id="chatForm">
-        <input type="text" id="message" />
-        <button type="submit" class="btn" id="chatSubmit">Display</button>
-    </form>
- 
+    <input type="text" id="username" />
+    <div>Chat Alias</div>
+    <textarea id="messages" rows=9 readonly></textarea>
+    <div></div>
+    <input type="text" id="message" />
 
+    <!-- Stop committing broken code. fixed. -->
     <script type="text/javascript">
 
-	function checkMessages() {
-	    alert("Checking for new messages..");
-	    var $textarea = $('#messages');
-	    $textarea.val( "@chat.readableMessages()" );
-	}
+	    function checkMessages() {
+	        alert("Checking for new messages..");
+	        var $textarea = $('#messages');
+	        $textarea.val( "@chat.readableMessages()" );
+	    }
 
-	$("#chatForm").submit(function (e) {
-	    var $msg = $('message').val();
-	    var $textarea = $('#messages');
-            $textarea.val( $textarea.val() + ": " + $('#message').val() + "\n");
+	    $("#chatForm").submit(function (e) {
+	        var $msg = $('message').val();
+	        var $textarea = $('#messages');
+                $textarea.val( $textarea.val() + ": " + $('#message').val() + "\n");
 	 
-            $('#message').val('');
+                $('#message').val('');
 	    
-	});
+	    });
 
         function sendMessage() {  
+
             var $textarea = $('#messages');
-            $textarea.val( name + ": " + $textarea.val() + $('#message').val() + "\n");
+            $textarea.val( $textarea.val() + $('#username').val() + ": " + $('#message').val() + "\n");
             $('#message').val('');
         }
     </script>
     <div> 
-       <a href="javascript:sendMessage()">Get Chat Messages</a>
+        <a class="btn" href="javascript:sendMessage()">Send Message</a>
     </div>
-  
 }

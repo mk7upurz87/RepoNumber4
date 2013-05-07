@@ -13,12 +13,20 @@ window.fbAsyncInit = function () {
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
 
+<<<<<<< HEAD
             FB.api('/me', function (meResponse) {
                 $.loadCalendar(meResponse);
                 $('#fb-Hidden-Content').attr('value', (meResponse.id));
 
                 // Set the profile image in the profile tile
                 setProfileImage(response, meResponse);
+=======
+         
+            FB.api('/me', function (response) {
+                $.loadCalendar(response);
+                document.fbUser = response;
+                setProfileImage(response);
+>>>>>>> f043212e0b71bf81f695bc416e4ab522e5690193
             });
 
             $('#social').fbWall({

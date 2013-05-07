@@ -1,10 +1,10 @@
 ﻿$(function () {
-    $("#stock-submit").button();
+    $("#stockSubmit").button();
 
     // When the form is submitted:
     $("#stockForm").submit(function (e) {
         e.preventDefault();
-        var tickerSymbol = $("input#stock-input").val();
+        var tickerSymbol = $("#stockInput").val();
 
         new Markit.QuoteService(tickerSymbol, function (jsonResult) {
             this.clearResult();
@@ -21,7 +21,7 @@
     });
 
     // Auto Complete
-    $("#stock-input").focus().autocomplete({
+    $("#stockInput").focus().autocomplete({
         source: function (request, response) {
             $.ajax({
                 beforeSend: function () {
@@ -71,9 +71,9 @@ Markit.QuoteService.prototype.clearResult = function () {
 Markit.QuoteService.prototype.resetForm = function () {
 
     //$("p").text("resetForm");
-    $("#stock-submit").button("refresh");
+    $("#stockSubmit").button("refresh");
     $("#stockForm").removeClass("error");
-    var $input = $("#stock-input");
+    var $input = $("#stockInput");
     $input
         .val($input.val().toUpperCase())
         .select()
