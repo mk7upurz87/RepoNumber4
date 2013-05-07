@@ -19,7 +19,7 @@
 	function checkMessages() {
 	    alert("Checking for new messages..");
 	    var $textarea = $('#messages');
-	    $textarea.val( @chat.readableMessages() );
+	    $textarea.val( "@chat.readableMessages()" );
 	}
 
 	$("#chatForm").submit(function (e) {

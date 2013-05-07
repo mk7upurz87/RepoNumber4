@@ -13,10 +13,12 @@ window.fbAsyncInit = function () {
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
 
-         
-            FB.api('/me', function (response) {
-                $.loadCalendar(response);
-                setProfileImage(response);
+            FB.api('/me', function (meResponse) {
+                $.loadCalendar(meResponse);
+                $('#fb-Hidden-Content').attr('value', (meResponse.id));
+
+                // Set the profile image in the profile tile
+                setProfileImage(response, meResponse);
             });
 
             $('#social').fbWall({
@@ -134,6 +136,7 @@ $('#showpic').click(function() {
     uploadphoto();
 });
 
-function setProfileImage(user) {
-    $('#profile-img').src("www.facebook.com/" + user.id + "/picture?type=circle");
+function setProfileImage(user, meUser) {
+    $("#profile-content").append("<img src='" + 'http://graph.facebook.com/' + user.authResponse.userID + '/picture?type=large' + "'></img>");
+    $("#profile-content").append("<h4 id='quotes-div'>" + meUser.quotes + "</h4>");
 }
