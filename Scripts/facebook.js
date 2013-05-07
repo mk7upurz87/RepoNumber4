@@ -97,7 +97,8 @@ function uploadphoto() {
         message: $('#status').val(),
         
         picture: imgsrc,
-    }; console.log(imgsrc);
+    };
+    console.log(imgsrc);
     FB.api('/me/feed', 'post', wallPost, function (response) {
         if (!response || response.error) {
             alert('Error occured');
@@ -106,28 +107,32 @@ function uploadphoto() {
         }
     });
     var imgURL = $('#uploadImage').attr('src');
-
-             
 }
 
 
 // Load the SDK Asynchronously
 (function (d) {
-    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-    if (d.getElementById(id)) { return; }
-    js = d.createElement('script'); js.id = id; js.async = true;
+    var js,
+        id = 'facebook-jssdk',
+        ref = d.getElementsByTagName('script')[0];
+
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement('script');
+    js.id = id;
+    js.async = true;
     js.src = "//connect.facebook.net/en_US/all.js";
     ref.parentNode.insertBefore(js, ref);
 }(document));
 
 $('#postbut').click(function() {
     console.log("posting status");
-   uploadphoto();
-   
+    uploadphoto();
 });
 
 $('#showpic').click(function() {
-   uploadphoto();
+    uploadphoto();
 });
 
 function setProfileImage(user) {
