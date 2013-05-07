@@ -18,7 +18,7 @@ MarkitTime.TimeseriesService.prototype.PlotChart = function(){
     //Make JSON request for timeseries data
     $.ajax({
         beforeSend:function(){
-            $("#stocks-container").last().text("Loading chart...");
+            $("#stocksContainer").last().text("Loading chart...");
         },
         data: { 
             symbol: this.symbol, 
@@ -71,7 +71,7 @@ MarkitTime.TimeseriesService.prototype.BuildDataAndChart = function(json){
 //Define the HighCharts options
 MarkitTime.TimeseriesService.prototype.oChartOptions = {
 	chart: {
-	    renderTo: 'stocks-container',
+	    renderTo: 'stocksContainer',
 	    plotBackgroundColor: 'rgba(239, 238, 239, 1.0)',
 	    borderWidth: 2,
 	    plotBackgroundColor: 'rgba(255, 255, 255, .9)',

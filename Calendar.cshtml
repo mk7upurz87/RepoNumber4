@@ -35,18 +35,27 @@
         
 
         <script>
-            $(function () {
+            $(function() {
                 var e = new Array();
-                var i = 0;
-
-                while( i < 3 ) {
-                    var date = "@cal.getDate()";
-                    var d = parseInt(date.slice(3, 5));
-                    var m = parseInt(date.slice(0, 2));
+                var dates = "@cal.getDates()".split("*");
+                var names = "@cal.getNames()".split("*");
+                var starts = "@cal.getStarts()".split("*");
+                var ends = "@cal.getEnds()".split("*");
+ 
+                for(var i = 0; i < parseInt("@cal.getNumOfEntries()"); i++) {
+                    var date = dates[i].split("/");
+                    var d = parseInt(date[1]);
+                    var m = parseInt(date[0]);
                     m = m - 1;
-                    var y = parseInt(date.slice(6, 10));
-                    e.push({ title: "@cal.getName()", start: new Date(y, m, d) });
-                    i = i + 1;
+                    var y = parseInt(date[2]);
+
+                    var start = starts[i].split(":");
+                    var starth = parseInt(start[0]);
+                    var startm = parseInt(start[1]);
+                    var end = ends[i].split(":");
+                    var endh = parseInt(end[0]);
+                    var endm = parseInt(end[1]);
+                    e.push({ title: names[i], start: new Date(y, m, d, starth, startm), end: new Date(y, m, d, endh, endm), allDay: false });
                 }
 
 
@@ -56,7 +65,25 @@
                         center: 'title',
                         right: 'month,basicWeek,basicDay'
                     },
+                    selectable: true,
+                    selectHelper: true,
+                    select: function (start, end, allDay) {
+                        var title = prompt('Event Title:');
+                        if (title) {
+                            calendar.fullCalendar('renderEvent',
+                                {
+                                    title: title,
+                                    start: start,
+                                    end: end,
+                                    allDay: allDay
+                                },
+                                true // make the event "stick"
+                            );
+                        }
+                        calendar.fullCalendar('unselect');
+                    },
                     editable: true,
+
                     events: e
                 });
             });

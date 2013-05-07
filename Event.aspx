@@ -7,30 +7,28 @@
 <body>
     <p class="site-title"><a href="About.cshtml">Web Engineering</a></p>
 
+
+
     <h1>Add an Event</h1>
     <form id="form1" runat="server">
         <div>    
             Event Name:  <asp:TextBox ID="name" runat="server"></asp:TextBox>
-            <br />
+            &nbsp; DO NOT USE QUOTES OF ANY KIND<br />
             Start Time:  <asp:TextBox ID="starttime" runat="server"></asp:TextBox>
-            <br />
+            &nbsp; (Must be formatted HH:MM)<br />
             End Time:  <asp:TextBox ID="endtime" runat="server"></asp:TextBox>
-            <br />
+            &nbsp; (Must be formatted HH:MM)<br />
             Date:  <asp:TextBox ID="date" runat="server"></asp:TextBox>
-            <br />
+            &nbsp;(Must be formatted MM/DD/YYYY)<br />
             Description:  <asp:TextBox ID="description" runat="server"></asp:TextBox>
 
             <asp:Button ID="Add" runat="server" onclick="Add_Click" Text="Add Event" />
-            <asp:Button ID="ShowAll" runat="server" onclick="ShowAll_Click" Text="Show All Results" />
  
             <br />
             <br />
-            <asp:Button ID="ShowName" runat="server" onclick="ShowName_Click" Text="Search Events" />
-            <asp:TextBox ID="txtEventName" runat="server"></asp:TextBox>
         </div>
 
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
-        <asp:TextBox ID="txtSanitize" runat="server"></asp:TextBox>
-        <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="UpdateMe!" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Return to Home" />
+
     </form>
 </body>

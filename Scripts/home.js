@@ -1,4 +1,7 @@
 ﻿$(function () {
+
+    $('body').append('<div runat="server" id="fbHiddenContent" style="display:none"></div>');
+
     var $tile = $('div.tile');
     $tile.append('<div class="btn tile-minimize">-</div>');
 
@@ -10,7 +13,6 @@
      * it's original height
      **********************************************************/
     var minimize = function (e) {
-        e.preventDefault();
 
         var $tile = $(this).parents('.tile');
         modifiedTiles[$tile.id] = $tile.attr("height");
@@ -23,6 +25,9 @@
         }).siblings('.tile').animate({
             height: '910px'
         })
+
+        $('.tile-minimize').off('click');
+        $('.tile-minimize').on('click', restore);
     }
 
     /************************************************************
@@ -40,6 +45,6 @@
             height: modifiedTiles[this.id]
         })
     };
-
-    $('.tile-minimize').click(minimize);
+    $('.tile-minimize').off('click');
+    $('.tile-minimize').on('click', minimize);
 })

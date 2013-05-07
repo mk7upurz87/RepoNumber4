@@ -8,7 +8,17 @@
     <script src="Scripts/QuoteService.js" type="text/javascript"></script>    
 
     <h3>Top 5 Stocks</h3>
-    <div id="stocks-top-five"></div>
+    <div id="stocks-top-five">
+                <!-- START Worden Top Gainers and Losers Ticker Widget -->
+ <script src="http://widgets.freestockcharts.com/script/WBIHorizontalTicker2.js?ver=12334" type="text/javascript"></script> <link href="http://widgets.freestockcharts.com/WidgetServer/WBITickerblue.css" rel="stylesheet" type="text/css" />
+<script>
+    var gainerTick = new WBIHorizontalTicker('gainers');
+    gainerTick.start();
+    var loserTick = new WBIHorizontalTicker('losers');
+    loserTick.start();
+	</script> <!-- End Scrolling Ticker Widget -->
+
+    </div>
 
     <a class="btn" href="~/Stocks.cshtml">View Stocks</a>
 }

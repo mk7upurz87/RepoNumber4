@@ -194,9 +194,26 @@ div.tile {
     }
 
     div#profile {
-        height: 150px;
+        height: 220px;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
+    }
+
+    h4#quotes-div {
+        display: inline-block;
+        width: 600px;
+        height: 150px;
+        margin: 30px
+        padding: 10px;
+        border-top: 1px;
+        border-bottom: 1px;
+        overflow: hidden;
+    }
+
+    #profile-content img{
+        position: relative;
+        max-height: 150px;
+        max-width: 150px;
     }
 
     div.left-column {
