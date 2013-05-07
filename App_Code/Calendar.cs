@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.Net;
 
 /// <summary>
 /// Calendar connects with the sql! we need to figure out how to make it user specific
@@ -12,8 +13,10 @@ public class Calendar
 {
     List<string> names;
     List<string> days;
-    int i;
+    List<string> starts;
+    List<string> ends;
     int j;
+    string email;
     
     SqlConnection myConnection = new SqlConnection("user id=webuser;" +
                                        "password=webuser;server=SHANNON-CHARLES;" +
@@ -24,8 +27,10 @@ public class Calendar
 	{
         names = new List<string>();
         days = new List<string>();
-        i = -1;
-        j = -1;
+        starts = new List<string>();
+        ends = new List<string>();
+        j = 0;
+
 	}
 
     public void database()
@@ -38,14 +43,16 @@ public class Calendar
         try
         {
             SqlDataReader myReader = null;
-            SqlCommand myCommand = new SqlCommand("select * from Calendar",
-                                                     myConnection);
+            int id = 1234;
+            SqlCommand myCommand = new SqlCommand("select * from Calendar where [user]= " + id + "", myConnection);
             myReader = myCommand.ExecuteReader();
             while (myReader.Read())
             {
                 names.Add(myReader["name"].ToString());
                 days.Add(myReader["date"].ToString());
-                System.Diagnostics.Debug.Write("###################$");
+                starts.Add(myReader["starttime"].ToString());
+                ends.Add(myReader["endtime"].ToString());
+               // System.Diagnostics.Debug.Write("###$");
             }
         }
         catch (Exception e)
@@ -54,20 +61,48 @@ public class Calendar
         }
     }
 
-    public string getName()
+    public string getNames()
     {
-        i = i + 1;
-        string name = names.ElementAt(i).ToString();
-        return name;
+        String nameString = "";
+        for (int i = 0; i < names.Count(); i++)
+        {
+            nameString += names.ElementAt(i) + "*";
+        }
+        return nameString;
     }
 
-    public string getDate()
+    public string getDates()
     {
-        j = j + 1;
-        string day = days.ElementAt(j).ToString();
-        System.Diagnostics.Debug.Write("****************************************");
-        System.Diagnostics.Debug.Write(day);
-        System.Diagnostics.Debug.Write("****************************************");
-        return day;
+        String dateString = "";
+        for (int i = 0; i < days.Count(); i++)
+        {
+            dateString += days.ElementAt(i) + "*";
+        }
+        return dateString;
+    }
+
+    public string getStarts()
+    {
+        String startString = "";
+        for (int i = 0; i < starts.Count(); i++)
+        {
+            startString += starts.ElementAt(i) + "*";
+        }
+        return startString;
+    }
+
+    public string getEnds()
+    {
+        String endString = "";
+        for (int i = 0; i < ends.Count(); i++)
+        {
+            endString += ends.ElementAt(i) + "*";
+        }
+        return endString;
+    }
+
+    public int getNumOfEntries()
+    {
+        return days.Count();
     }
 }

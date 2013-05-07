@@ -1,6 +1,6 @@
 ﻿
 // Additional JS functions here
-   
+var email = "";
 window.fbAsyncInit = function () {
     FB.init({
         appId: '536466069729077', // App ID
@@ -12,9 +12,14 @@ window.fbAsyncInit = function () {
 
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
-            userID = response.userID; source = 'http://graph.facebook.com/' + userID + '/picture';
-            document.getElementById(profile).src = source;
-            email = response.email;
+
+         
+            FB.api('/me', function (response) {
+                $.loadCalendar(response);
+                document.fbUser = response;
+                setProfileImage(response);
+            });
+
             $('#social').fbWall({
                 id: response.authResponse.userID,
                 accessToken: response.authResponse.accessToken,
@@ -38,11 +43,9 @@ window.fbAsyncInit = function () {
                 });
             
 
-            });
-                  
-               
+            })
             $('a#register').hide();
-            document.getElementById('content').style.display = "inline";
+            document.getElementById('feed-content').style.display = "inline";
             // connected
         } else if (response.status === 'not_authorized') {
             // not_authorized
@@ -94,7 +97,8 @@ function uploadphoto() {
         message: $('#status').val(),
         
         picture: imgsrc,
-    }; console.log(imgsrc);
+    };
+    console.log(imgsrc);
     FB.api('/me/feed', 'post', wallPost, function (response) {
         if (!response || response.error) {
             alert('Error occured');
@@ -103,26 +107,34 @@ function uploadphoto() {
         }
     });
     var imgURL = $('#uploadImage').attr('src');
-
-             
 }
-
 
 
 // Load the SDK Asynchronously
 (function (d) {
-    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-    if (d.getElementById(id)) { return; }
-    js = d.createElement('script'); js.id = id; js.async = true;
+    var js,
+        id = 'facebook-jssdk',
+        ref = d.getElementsByTagName('script')[0];
+
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement('script');
+    js.id = id;
+    js.async = true;
     js.src = "//connect.facebook.net/en_US/all.js";
     ref.parentNode.insertBefore(js, ref);
 }(document));
 
-$('#postbut').click(function () {
+$('#postbut').click(function() {
     console.log("posting status");
-   uploadphoto();
-   
+    uploadphoto();
 });
-$('#showpic').click(function () {
-   uploadphoto();
+
+$('#showpic').click(function() {
+    uploadphoto();
 });
+
+function setProfileImage(user) {
+    $('#profile-img').src("www.facebook.com/" + user.id + "/picture?type=circle");
+}
