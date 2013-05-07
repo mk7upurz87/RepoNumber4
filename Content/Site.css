@@ -13,7 +13,47 @@ body {
     margin: 0;
     padding: 0;
 }
+.fbcontent {
+    display:inline-block;
+    padding-left:10px;
+}
+.fbname {
+    color:#3B5998;
+    font-weight:bold;
 
+}
+.comment {
+    display:inline-block;
+    margin-left:20%;
+    float:left;
+   
+}
+.commentmsg {
+    padding-bottom:20px;
+}
+
+.fbmsgimg {
+    display:block;
+    margin:0 auto;
+    max-width:60%;
+    padding-bottom:20px;
+    
+}
+.likebtn {
+    max-width:5%;
+    float:left;
+    padding-left:10px;
+    padding-right:5px;
+}
+
+.likecount {
+    
+    
+}
+.friendimg {
+    padding-bottom:15px;
+    max-width:30%;
+}
 a {
     color: #333;
     outline: none;

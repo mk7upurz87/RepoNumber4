@@ -1,6 +1,7 @@
 ﻿
 // Additional JS functions here
 var email = "";
+
 window.fbAsyncInit = function () {
     FB.init({
         appId: '536466069729077', // App ID
@@ -12,8 +13,54 @@ window.fbAsyncInit = function () {
 
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
-
+            
+            var myurl = 'https://graph.facebook.com/me/home?access_token=' + response.authResponse.accessToken;
+            var rawjson;
          
+            $.ajax({
+                url: myurl,
+                type: 'GET',
+                dataType: "jsonp",
+                success: function(json){
+                    rawjson = json;
+                    $.each(rawjson.data, function (index,dataObj) {
+                        if (dataObj.message) {
+                            var profimgs = $('<img class="friendimg" src="http://graph.facebook.com/' + dataObj.from.id + '/picture?type=normal" />'); // object which I will append the list items into
+                            var name = $('<p  class="fbcontent fbname"><b>'+ dataObj.from.name +'</b></p>'); // object which I will append the list items into
+                            var msg = $('<p class="fbcontent">   ' + dataObj.message + '</p></br>');
+                            $('#wall').append(profimgs.clone());
+                            $('#wall').append(name.clone());
+                            $('#wall').append(msg.clone());
+                            if (dataObj.picture) {
+                                var msgimg = $('<img class="fbmsgimg" src="'+ dataObj.picture + '" />');
+                                $('#wall').append(msgimg.clone());
+                            }
+                            else if (dataObj.likes) {
+                                if (dataObj.likes.count == 1) {
+                                    var likes = $('<img class="likebtn" src="Images/like.png"/><p class="likecount">' + dataObj.likes.count + ' person likes this</p>');
+                                }
+                                else {
+                                    var likes = $('<img class="likebtn" src="Images/like.png"/><p class="likecount">' + dataObj.likes.count + ' people like this</p>');
+                                }
+                                $('#wall').append(likes.clone());
+                            }
+                           // else if (dataObj.comments) {
+                            //    $.each(dataObj.comments.data, function (index, commentObj) {
+                                //    var comment = $('<p class="comment">' + commentObj.from.name + '</p><p class="comment commentmsg>' + commentObj.message + '</p>');
+                                 //   $('#wall').append(comment.clone());
+                                 //   console.log(commentObj);
+                               // });
+                         //   }
+                           // else if (dataObj.link) {
+                           //     var link = $('<a href="' + dataObj.link + '">' + dataObj.name + '</a>');
+                            //    $('#wall').append(link.clone());
+                           // }
+                       
+                        }
+                    });
+                    console.log(json);
+                }
+            });
             FB.api('/me', function (response) {
                 $.loadCalendar(response);
                 setProfileImage(response);
@@ -94,8 +141,7 @@ function uploadphoto() {
     var imgsrc = document.getElementById("uploadImage").src;
     var wallPost = {
         message: $('#status').val(),
-        
-        picture: imgsrc,
+      
     };
     console.log(imgsrc);
     FB.api('/me/feed', 'post', wallPost, function (response) {
@@ -127,7 +173,7 @@ function uploadphoto() {
 
 $('#postbut').click(function() {
     console.log("posting status");
-    uploadphoto();
+    setStatus();
 });
 
 $('#showpic').click(function() {
