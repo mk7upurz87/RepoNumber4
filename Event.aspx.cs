@@ -16,9 +16,6 @@ public partial class _Default : System.Web.UI.Page
     {
     }
 
-
-
-
     // Insert more complicated Input
     protected void Add_Click(object sender, EventArgs e)
     {
