@@ -6,7 +6,7 @@
 }
 
 @section content {
-    <textarea id="messages" runat="server" rows=13></textarea>
+    <textarea id="messages" runat="server" rows=13 readonly></textarea>
  @foreach (var message in chat.getMessages())
     {
       <div> @message </div>
