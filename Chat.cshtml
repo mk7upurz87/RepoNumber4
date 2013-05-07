@@ -6,32 +6,39 @@
 }
 
 @section content {
-    <textarea id="messages" runat="server" rows=13 readonly></textarea>
- @foreach (var message in chat.getMessages())
-    {
-      <div> @message </div>
-  }
+    <textarea id="messages" runat="server" rows=10 readonly></textarea>
+
     <form class="inputs" id="chatForm">
         <input type="text" id="message" />
         <button type="submit" class="btn" id="chatSubmit">Display</button>
     </form>
  
 
-    <!-- Stop committing broken code. fixed. -->
     <script type="text/javascript">
 
-	$("#chatForm").submit(function (e) {
+	function checkMessages() {
+	    alert("Checking for new messages..");
 	    var $textarea = $('#messages');
-            $textarea.val( name + ": " + $textarea.val() + $('#message').val() + "\n");
+	    $textarea.val( @chat.readableMessages() );
+	}
+
+	$("#chatForm").submit(function (e) {
+	    var $msg = $('message').val();
+	    var $textarea = $('#messages');
+            $textarea.val( $textarea.val() + ": " + $('#message').val() + "\n");
+	 
             $('#message').val('');
+	    
 	});
 
-        $.sendMessage=function() {  
-	    alert("sending");
+        function sendMessage() {  
             var $textarea = $('#messages');
             $textarea.val( name + ": " + $textarea.val() + $('#message').val() + "\n");
             $('#message').val('');
         }
     </script>
+    <div> 
+       <a href="javascript:sendMessage()">Get Chat Messages</a>
+    </div>
   
 }
