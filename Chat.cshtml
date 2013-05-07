@@ -6,45 +6,32 @@
 }
 
 @section content {
-    <textarea id="messages" ></textarea>
-    <form class="inputs">
+    <textarea id="messages" runat="server" rows=13></textarea>
+ @foreach (var message in chat.getMessages())
+    {
+      <div> @message </div>
+  }
+    <form class="inputs" id="chatForm">
         <input type="text" id="message" />
-        <button type="submit" onclick="sendMessage">Display</button>
+        <button type="submit" class="btn" id="chatSubmit">Display</button>
     </form>
+ 
 
     <!-- Stop committing broken code. fixed. -->
     <script type="text/javascript">
-        var sock;
-        function loadSocket() {
 
- 	if ("WebSocket" in window) {
-                sock = new WebSocket("ws://localhost:8787/chat");
-                sock.onopen = function (event) {
-                    alert("connected");
-                }
+	$("#chatForm").submit(function (e) {
+	    var $textarea = $('#messages');
+            $textarea.val( name + ": " + $textarea.val() + $('#message').val() + "\n");
+            $('#message').val('');
+	});
 
-                sock.onmessage = function (event) {
-                    var $chats = $('#messages');
-                    $chats.val($chats.val() + event.data + "\n");
-                }
-
-                sock.onclose = function (event) {
-                    alert("socket closed");
-                }
-            }
-            else {
-                alert("Chat is not supported in your browser. Get a better browser.")
-            }
-
-        }
         $.sendMessage=function() {  
-
+	    alert("sending");
             var $textarea = $('#messages');
-            $textarea.val(name + ":" + $textarea.val() + $('#message').val() + "\n");
+            $textarea.val( name + ": " + $textarea.val() + $('#message').val() + "\n");
             $('#message').val('');
         }
     </script>
-    <div> 
-        <a href="javascript:sendMessage()">connect socket</a>
-    </div>
+  
 }
