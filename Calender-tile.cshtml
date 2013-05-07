@@ -2,6 +2,7 @@
     Layout = "~/_TileLayout.cshtml";
     Page.Head = "Calendar";
     Calendar cal = new Calendar();
+    cal.database();
 }
 
 @section content {
@@ -10,27 +11,57 @@
     <a class="btn" href="~/Event.aspx">Add New Event</a>
     <a class="btn" href="~/Calendar.cshtml">View Calendar</a>
     <script>
-        $.loadCalendar = function(user) {
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-            var name = "Shannon";
+        $(function () {
             var e = new Array();
+            var dates = "@cal.getDates()".split("*");
+                var names = "@cal.getNames()".split("*");
+                var starts = "@cal.getStarts()".split("*");
+                var ends = "@cal.getEnds()".split("*");
 
-            for (var i = 0; i < 10; i++) {
-                e.push({ title: user.name + " has a doctor's apt -.-", start: new Date(y, m, i) });
-            }
+                for (var i = 0; i < parseInt("@cal.getNumOfEntries()") ; i++) {
+                    var date = dates[i].split("/");
+                    var d = parseInt(date[1]);
+                    var m = parseInt(date[0]);
+                    m = m - 1;
+                    var y = parseInt(date[2]);
 
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: ''
-                },
-                editable: true,
-                events: e
+                    var start = starts[i].split(":");
+                    var starth = parseInt(start[0]);
+                    var startm = parseInt(start[1]);
+                    var end = ends[i].split(":");
+                    var endh = parseInt(end[0]);
+                    var endm = parseInt(end[1]);
+                    e.push({ title: names[i], start: new Date(y, m, d, starth, startm), end: new Date(y, m, d, endh, endm), allDay: false });
+                }
+
+
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: ""
+                    },
+                    selectable: true,
+                    selectHelper: true,
+                    select: function (start, end, allDay) {
+                        var title = prompt('Event Title:');
+                        if (title) {
+                            calendar.fullCalendar('renderEvent',
+                                {
+                                    title: title,
+                                    start: start,
+                                    end: end,
+                                    allDay: allDay
+                                },
+                                true // make the event "stick"
+                            );
+                        }
+                        calendar.fullCalendar('unselect');
+                    },
+                    editable: true,
+
+                    events: e
+                });
             });
-        }
-    </script>
+        </script>
 }

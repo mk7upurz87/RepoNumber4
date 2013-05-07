@@ -16,6 +16,7 @@ window.fbAsyncInit = function () {
          
             FB.api('/me', function (response) {
                 $.loadCalendar(response);
+                document.fbUser = response;
                 setProfileImage(response);
             });
 
