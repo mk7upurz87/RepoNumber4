@@ -10,29 +10,28 @@ window.fbAsyncInit = function () {
         cookie: true, // enable cookies to allow the server to access the session
         xfbml: true  // parse XFBML
     });
-
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
-            
+
             var myurl = 'https://graph.facebook.com/me/home?access_token=' + response.authResponse.accessToken;
             var rawjson;
-         
+
             $.ajax({
                 url: myurl,
                 type: 'GET',
                 dataType: "jsonp",
-                success: function(json){
+                success: function (json) {
                     rawjson = json;
-                    $.each(rawjson.data, function (index,dataObj) {
+                    $.each(rawjson.data, function (index, dataObj) {
                         if (dataObj.message) {
                             var profimgs = $('<img class="friendimg" src="http://graph.facebook.com/' + dataObj.from.id + '/picture?type=square" />'); // object which I will append the list items into
-                            var name = $('<p  class="fbcontent fbname"><b>'+ dataObj.from.name +'</b></p>'); // object which I will append the list items into
+                            var name = $('<p  class="fbcontent fbname"><b>' + dataObj.from.name + '</b></p>'); // object which I will append the list items into
                             var msg = $('<p class="fbcontent">   ' + dataObj.message + '</p></br>');
                             $('#wall').append(profimgs.clone());
                             $('#wall').append(name.clone());
                             $('#wall').append(msg.clone());
                             if (dataObj.picture) {
-                                var msgimg = $('<img class="fbmsgimg" src="'+ dataObj.picture + '" />');
+                                var msgimg = $('<img class="fbmsgimg" src="' + dataObj.picture + '" />');
                                 $('#wall').append(msgimg.clone());
                             }
                             else if (dataObj.likes) {
@@ -44,25 +43,23 @@ window.fbAsyncInit = function () {
                                 }
                                 $('#wall').append(likes.clone());
                             }
-                           // else if (dataObj.comments) {
+                            // else if (dataObj.comments) {
                             //    $.each(dataObj.comments.data, function (index, commentObj) {
-                                //    var comment = $('<p class="comment">' + commentObj.from.name + '</p><p class="comment commentmsg>' + commentObj.message + '</p>');
-                                 //   $('#wall').append(comment.clone());
-                                 //   console.log(commentObj);
-                               // });
-                         //   }
-                           // else if (dataObj.link) {
-                           //     var link = $('<a href="' + dataObj.link + '">' + dataObj.name + '</a>');
+                            //    var comment = $('<p class="comment">' + commentObj.from.name + '</p><p class="comment commentmsg>' + commentObj.message + '</p>');
+                            //   $('#wall').append(comment.clone());
+                            //   console.log(commentObj);
+                            // });
+                            //   }
+                            // else if (dataObj.link) {
+                            //     var link = $('<a href="' + dataObj.link + '">' + dataObj.name + '</a>');
                             //    $('#wall').append(link.clone());
-                           // }
-                       
+                            // }
+
                         }
                     });
                     console.log(json);
                 }
             });
-           
-
 
             FB.api('/me', function (meResponse) {
                 $('#fb-Hidden-Content').attr('value', (meResponse.id));
@@ -71,7 +68,7 @@ window.fbAsyncInit = function () {
                 setProfileImage(response, meResponse);
 
             });
-
+            /*
             $('#social').fbWall({
                 id: response.authResponse.userID,
                 accessToken: response.authResponse.accessToken,
@@ -79,21 +76,22 @@ window.fbAsyncInit = function () {
                 showComments: true,
                 max: 5,
                 timeConversion: 12
-                   
+
             });
+            */
             $('a#loginbutton').text('Log out');
             $(function () {
                 $('a#loginbutton').click(function () {
                     if ($(this).text() == ("Log out")) {
-                               
+
                         FB.logout();
                     }
                     else {
-                              
+
                     }
                     console.log($(this).text());
                 });
-            
+
 
             })
             $('a#register').hide();
@@ -101,21 +99,21 @@ window.fbAsyncInit = function () {
             // connected
         } else if (response.status === 'not_authorized') {
             // not_authorized
-               
+
             // $('#social).hide();
-                
+
         } else {
             console.log("i got here");
             $('#social').hide();
             $('form').hide();
-             
+
             // not_logged_in
         }
     });
     // Additional init code here
 };
-    
-(function() {
+
+(function () {
     var e = document.createElement('script');
     e.type = 'text/javascript';
     e.src = document.location.protocol +
@@ -123,42 +121,24 @@ window.fbAsyncInit = function () {
     e.async = true;
     document.getElementById('fb-root').appendChild(e);
 }());
-    
-function setStatus() {
-       
-    status1 = document.getElementById('fb-status').value;
-    FB.api(
-    {
-        method: 'status.set',
-        status: status1
-    },
-    function (response) {
-        if (response == 0) {
-            alert('Your facebook status not updated. Give Status Update Permission.');
-        }
-        else {
-           
-           
-        }
-    });
-}
 
-function uploadphoto() {
-    var imgsrc = document.getElementById("uploadImage").src;
-    var wallPost = {
-        message: $('#status').val(),
-        imgUrl: imgsrc
-    };
-    console.log(imgsrc);
-    FB.api('/me/feed', 'post', wallPost, function (response) {
-        if (!response || response.error) {
-            
-        } else {
-            
-        }
+
+function postToFacebook() {
+    var params = {};
+    params['message'] = $('#fb-status').val();
+   // params['name'] = 'Name';
+   // params['description'] = '';
+    //params['link'] = 'http://apps.facebook.com/summer-mourning/';
+    //params['picture'] = 'http://summer-mourning.zoocha.com/uploads/thumb.png';
+    //params['caption'] = 'Caption';
+
+    FB.api('/me/feed', 'post', params, function (response) {
+        
     });
-    var imgURL = $('#uploadImage').attr('src');
 }
+$('#postbut').click(function () {
+    postToFacebook();
+});
 
 
 // Load the SDK Asynchronously
@@ -177,14 +157,8 @@ function uploadphoto() {
     ref.parentNode.insertBefore(js, ref);
 }(document));
 
-$('#postbut').click(function() {
-    console.log("posting status");
-    uploadphoto();
-});
 
-$('#showpic').click(function() {
-    uploadphoto();
-});
+
 
 
 function setProfileImage(user, meUser) {
